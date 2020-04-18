@@ -23,7 +23,7 @@ var nearby_enemies = 0
 var attacking = false
 var cooldown = 0
 
-var boundary = 3985
+var boundary = 285
 
 var bullet_scene = load("res://Bullet.tscn")
 
