@@ -18,16 +18,8 @@ func agro():
 	
 func unagro():
 	near_player = false
-
-func _draw():
-	var color = Color.orange
-	if agro:
-		color = Color.red
-		
-	draw_circle(Vector2(), 10, color)
 	
 func _process(delta):
-	update()
 	
 	if near_player:
 		agro = true

@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://person.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.5, 7.5 )
 
 [node name="Player" type="RigidBody2D" groups=[
 "player",
@@ -32,15 +36,13 @@ collision_mask = 0
 [node name="ProximityCollider" type="CollisionShape2D" parent="ProximityArea"]
 shape = SubResource( 1 )
 
-[node name="BodyCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 2.5, 0 )
-scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( 30, 0, -30, 30, -30, -30 )
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
 
-[node name="BodyPolygon" type="Polygon2D" parent="."]
-position = Vector2( 2.5, 0 )
-scale = Vector2( 0.5, 0.5 )
-color = Color( 0.00784314, 0.94902, 0, 1 )
-polygon = PoolVector2Array( 30, 0, -30, 30, -30, -30 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 2 )
+scale = Vector2( 3, 3 )
+shape = SubResource( 2 )
 [connection signal="body_entered" from="ProximityArea" to="." method="_on_ProximityArea_body_entered"]
 [connection signal="body_exited" from="ProximityArea" to="." method="_on_ProximityArea_body_exited"]
