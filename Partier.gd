@@ -8,6 +8,8 @@ export (PackedScene) var TipAnimation
 
 var screen_size
 
+var dance_time_offset;
+
 var dancing_old = false
 var dancing = false
 var near_player = false
@@ -16,9 +18,8 @@ var player
 var attraction
 
 func start_dancing(animTime):
+	dance_time_offset = animTime;
 	near_player = true
-	$AnimationPlayer.play("dance")
-	$AnimationPlayer.seek(animTime, true);
 	
 func stop_dancing():
 	near_player = false
@@ -31,12 +32,14 @@ func give_tip():
 	#add_child(tip_animation)
 	
 func _process(delta):
-	if near_player:
+	if near_player && player.dancing:
 		dancing = true
 	else:
 		dancing = false
 	
 	if not dancing_old and dancing:
+		$AnimationPlayer.play("dance")
+		$AnimationPlayer.seek(dance_time_offset, true);
 		player.nearby_partiers += 1
 		
 		

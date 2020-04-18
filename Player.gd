@@ -6,6 +6,7 @@ var nearby_partiers = 0
 var boundary = 285
 
 var money = 0;
+var dancing = false
 
 func _process(delta):
 	
@@ -20,10 +21,19 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
 		
-	apply_impulse(Vector2(), velocity.normalized() * speed);
+	if(!dancing):
+		apply_impulse(Vector2(), velocity.normalized() * speed)
 	
 func _input(event):
-	pass
+	if event.is_action_pressed("dance"):
+		dancing = !dancing
+		print("hey!")
+		
+		if dancing:
+			$AnimationPlayer.play("dance")
+		else:
+			$AnimationPlayer.stop()
+			$AnimationPlayer.seek(0, true)
 
 func _on_ProximityArea_body_entered(body):
 	if is_body_partier(body):

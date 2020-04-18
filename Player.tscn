@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://person_upside_down.png" type="Texture" id=2]
-[ext_resource path="res://person.png" type="Texture" id=3]
+[ext_resource path="res://person.png" type="Texture" id=2]
+[ext_resource path="res://person_upside_down.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=4]
 resource_name = "dance"
@@ -18,12 +18,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25 ),
 "transitions": PoolRealArray( 1, 1.1487 ),
 "update": 0,
-"values": [ ExtResource( 3 ), ExtResource( 2 ) ]
+"values": [ ExtResource( 2 ), ExtResource( 3 ) ]
 }
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "dance",
 "speed": 5.0
@@ -48,7 +48,6 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "dance"
 anims/dance = SubResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -56,6 +55,7 @@ visible = false
 scale = Vector2( 3, 3 )
 frames = SubResource( 3 )
 animation = "dance"
+frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
