@@ -103,17 +103,10 @@ func is_body_enemy(body):
 	return "enemy" in body.get_groups()
 
 func _on_BodyArea_body_entered(body):
-	if is_body_enemy(body) and not is_immune:
-		take_damage()
+	pass
 
 func _on_ImmuneTimer_timeout():
 	is_immune = false
-	
-	#Check for enemies already on player
-	for body in $BodyArea.get_overlapping_bodies():
-		if is_body_enemy(body):
-			take_damage()
-			break
 			
 func take_damage():
 	is_immune = true

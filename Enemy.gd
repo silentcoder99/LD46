@@ -52,10 +52,6 @@ func _process(delta):
 	agro_timer -= delta
 	if agro_timer < 0:
 		agro_timer = 0
-		
-func _physics_process(delta):
-	if agro:
-		apply_central_impulse(position.direction_to(player.position) * agro_force)
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -69,11 +65,10 @@ func go_immune():
 	$ImmuneTimer.start()
 
 func _on_MoveTimer_timeout():
-	if not agro:
-		attraction = max(player.attraction - position.distance_to(player.position) * distance_scale, 0.00001)
-		
-		var move_direction = calc_move_direction()
-		apply_impulse(Vector2(), move_direction * speed)
+	attraction = max(player.attraction - position.distance_to(player.position) * distance_scale, 0.00001)
+	
+	var move_direction = Vector2(1, 0).rotated(randf() * 2 * PI);
+	apply_impulse(Vector2(), move_direction * speed)
 	
 	$MoveTimer.wait_time = rand_range(min_move_time, max_move_time)
 	$MoveTimer.start()
