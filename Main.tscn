@@ -1,20 +1,20 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Partier.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tilesheet.png" type="Texture" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://fonts/LCD-N___.TTF" type="DynamicFontData" id=5]
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
-[sub_resource type="TileSet" id=6]
+[sub_resource type="TileSet" id=2]
 0/name = "tilesheet.png 0"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 576, 192 )
+0/region = Rect2( 0, 0, 64, 64 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 2, 0 )
 0/autotile/tile_size = Vector2( 64, 64 )
@@ -28,12 +28,12 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 7 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 use_filter = true
 extra_spacing_char = 1
@@ -43,11 +43,12 @@ font_data = ExtResource( 5 )
 script = ExtResource( 1 )
 spawn_amount = 5
 spawn_area = 300
-Enemy = ExtResource( 2 )
+Partier = ExtResource( 2 )
 time_limit = 3000
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 6 )
+tile_set = SubResource( 2 )
+cell_quadrant_size = 64
 format = 1
 tile_data = PoolIntArray( -327686, 0, 2, -327685, 0, 2, -327684, 0, 2, -327683, 0, 2, -327682, 0, 2, -327681, 0, 2, -393216, 0, 2, -393215, 0, 2, -393214, 0, 2, -393213, 0, 2, -393212, 0, 2, -393211, 0, 2, -262150, 0, 2, -262149, 0, 131072, -262148, 0, 131072, -262147, 0, 131072, -262146, 0, 131072, -262145, 0, 131072, -327680, 0, 131072, -327679, 0, 131072, -327678, 0, 131072, -327677, 0, 131072, -327676, 0, 131072, -327675, 0, 2, -196614, 0, 2, -196613, 0, 131072, -196612, 0, 131072, -196611, 0, 131072, -196610, 0, 131072, -196609, 0, 131072, -262144, 0, 131072, -262143, 0, 131072, -262142, 0, 131072, -262141, 0, 131072, -262140, 0, 131072, -262139, 0, 2, -131078, 0, 2, -131077, 0, 131072, -131076, 0, 131072, -131075, 0, 131072, -131074, 0, 131072, -131073, 0, 131072, -196608, 0, 131072, -196607, 0, 131072, -196606, 0, 131072, -196605, 0, 131072, -196604, 0, 131072, -196603, 0, 2, -65542, 0, 2, -65541, 0, 131072, -65540, 0, 131072, -65539, 0, 131072, -65538, 0, 131072, -65537, 0, 131072, -131072, 0, 131072, -131071, 0, 131072, -131070, 0, 131072, -131069, 0, 131072, -131068, 0, 131072, -131067, 0, 2, -6, 0, 2, -5, 0, 131072, -4, 0, 131072, -3, 0, 131072, -2, 0, 131072, -1, 0, 131072, -65536, 0, 131072, -65535, 0, 131072, -65534, 0, 131072, -65533, 0, 131072, -65532, 0, 131072, -65531, 0, 2, 65530, 0, 2, 65531, 0, 131072, 65532, 0, 131072, 65533, 0, 131072, 65534, 0, 131072, 65535, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131072, 5, 0, 2, 131066, 0, 2, 131067, 0, 131072, 131068, 0, 131072, 131069, 0, 131072, 131070, 0, 131072, 131071, 0, 131072, 65536, 0, 131072, 65537, 0, 131072, 65538, 0, 131072, 65539, 0, 131072, 65540, 0, 131072, 65541, 0, 2, 196602, 0, 2, 196603, 0, 131072, 196604, 0, 131072, 196605, 0, 131072, 196606, 0, 131072, 196607, 0, 131072, 131072, 0, 131072, 131073, 0, 131072, 131074, 0, 131072, 131075, 0, 131072, 131076, 0, 131072, 131077, 0, 2, 262138, 0, 2, 262139, 0, 131072, 262140, 0, 131072, 262141, 0, 131072, 262142, 0, 131072, 262143, 0, 131072, 196608, 0, 131072, 196609, 0, 131072, 196610, 0, 131072, 196611, 0, 131072, 196612, 0, 131072, 196613, 0, 2, 327674, 0, 2, 327675, 0, 131072, 327676, 0, 131072, 327677, 0, 131072, 327678, 0, 131072, 327679, 0, 131072, 262144, 0, 131072, 262145, 0, 131072, 262146, 0, 131072, 262147, 0, 131072, 262148, 0, 131072, 262149, 0, 2, 393210, 0, 2, 393211, 0, 2, 393212, 0, 2, 393213, 0, 2, 393214, 0, 2, 393215, 0, 2, 327680, 0, 2, 327681, 0, 2, 327682, 0, 2, 327683, 0, 2, 327684, 0, 2, 327685, 0, 2 )
 __meta__ = {
@@ -67,15 +68,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TimeLabel" type="Label" parent="UI"]
+[node name="MoneyLabel" type="Label" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -270.0
 margin_top = 20.0
 margin_right = -20.0
 margin_bottom = 97.0
-custom_fonts/font = SubResource( 1 )
-text = "Time  100.00"
+custom_fonts/font = SubResource( 3 )
+text = "Cash  $100"
 align = 2
 
 [node name="DamageRect" type="ColorRect" parent="UI"]

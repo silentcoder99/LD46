@@ -6,33 +6,35 @@ export var max_move_time = 1
 
 var screen_size
 
-var agro_old = false
-var agro = false
+var dancing_old = false
+var dancing = false
 var near_player = false
 
 var player
 var attraction
 
-func agro():
+func start_dancing():
 	near_player = true
 	
-func unagro():
+func stop_dancing():
 	near_player = false
 	
 func _process(delta):
-	
 	if near_player:
-		agro = true
+		dancing = true
 	else:
-		agro = false
+		dancing = false
 	
-	if not agro_old and agro:
-		player.nearby_enemies += 1
+	if not dancing_old and dancing:
+		player.nearby_partiers += 1
+		$AnimatedSprite.play()
 		
-	if agro_old and not agro:
-		player.nearby_enemies -= 1
+	if dancing_old and not dancing:
+		player.nearby_partiers -= 1
+		$AnimatedSprite.stop()
+		$AnimatedSprite.set_frame(0)
 		
-	agro_old = agro
+	dancing_old = dancing
 
 func _ready():
 	screen_size = get_viewport_rect().size

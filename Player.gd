@@ -2,7 +2,7 @@ extends RigidBody2D
 
 export var speed = 1000
 
-var nearby_enemies = 0
+var nearby_partiers = 0
 var boundary = 285
 
 func _process(delta):
@@ -19,28 +19,17 @@ func _process(delta):
 		velocity.x += 1
 		
 	apply_impulse(Vector2(), velocity.normalized() * speed);
-		
-	#position += velocity.normalized() * speed * delta
-	
-	#position.x = clamp(position.x, -boundary, boundary)
-	#position.y = clamp(position.y, -boundary, boundary)
-	
-	#var mouse_position = get_global_mouse_position()
-	#look_at(mouse_position)
-	
-	#Draw attraction radius
-	#update()
 	
 func _input(event):
 	pass
 
 func _on_ProximityArea_body_entered(body):
-	if is_body_enemy(body):
-		body.agro()
+	if is_body_partier(body):
+		body.start_dancing()
 
 func _on_ProximityArea_body_exited(body):
-	if is_body_enemy(body):
-		body.unagro()
+	if is_body_partier(body):
+		body.stop_dancing()
 
-func is_body_enemy(body):
-	return "enemy" in body.get_groups()
+func is_body_partier(body):
+	return "partier" in body.get_groups()
