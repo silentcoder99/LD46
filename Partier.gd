@@ -1,8 +1,10 @@
 extends RigidBody2D
 
 export var speed = 400
-export var min_move_time = 0.5
-export var max_move_time = 1
+export var min_move_delay = 0.5
+export var max_move_delay = 1
+export var min_move_duration = 0.5
+export var max_move_duration = 2
 export var tip_amount = 1
 export (PackedScene) var TipAnimation
 
@@ -13,6 +15,9 @@ var dance_time_offset;
 var dancing_old = false
 var dancing = false
 var near_player = false
+
+var move_direction
+var moving
 
 var player
 var attraction
@@ -50,16 +55,31 @@ func _process(delta):
 		
 	dancing_old = dancing
 
+func _physics_process(delta):
+	
+	if moving:
+		apply_impulse(Vector2(), move_direction * speed)
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	player = get_tree().get_nodes_in_group("player")[0]
 	
-	$MoveTimer.wait_time = rand_range(0, max_move_time)
+	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
+	$MoveTimer.wait_time = rand_range(0, max_move_delay)
 	$MoveTimer.start()
 
 func _on_MoveTimer_timeout():
-	var move_direction = Vector2(1, 0).rotated(randf() * 2 * PI);
-	apply_impulse(Vector2(), move_direction * speed)
+	print("Moving!")
 	
-	$MoveTimer.wait_time = rand_range(min_move_time, max_move_time)
+	move_direction = Vector2(1, 0).rotated(rand_range(0, 2 * PI));
+	moving = true
+	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
+	$MoveDurationTimer.start()
+
+func _on_MoveDurationTimer_timeout():
+	print("Not moving!")
+	
+	moving = false
+	
+	$MoveTimer.wait_time = rand_range(min_move_delay, max_move_delay)
 	$MoveTimer.start()
