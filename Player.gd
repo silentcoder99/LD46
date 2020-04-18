@@ -1,6 +1,6 @@
-extends Area2D
+extends RigidBody2D
 
-export var speed = 100
+export var speed = 1
 
 var nearby_enemies = 0
 var boundary = 285
@@ -18,13 +18,15 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
 		
-	position += velocity.normalized() * speed * delta
+	apply_impulse(Vector2(), velocity.normalized() * speed);
+		
+	#position += velocity.normalized() * speed * delta
 	
-	position.x = clamp(position.x, -boundary, boundary)
-	position.y = clamp(position.y, -boundary, boundary)
+	#position.x = clamp(position.x, -boundary, boundary)
+	#position.y = clamp(position.y, -boundary, boundary)
 	
-	var mouse_position = get_global_mouse_position()
-	look_at(mouse_position)
+	#var mouse_position = get_global_mouse_position()
+	#look_at(mouse_position)
 	
 	#Draw attraction radius
 	#update()

@@ -5,9 +5,12 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
 
-[node name="Player" type="Area2D" groups=[
+[node name="Player" type="RigidBody2D" groups=[
 "player",
 ]]
+mode = 2
+gravity_scale = 0.0
+linear_damp = 30.0
 script = ExtResource( 1 )
 speed = 300
 
@@ -30,21 +33,15 @@ collision_mask = 0
 [node name="ProximityCollider" type="CollisionShape2D" parent="ProximityArea"]
 shape = SubResource( 1 )
 
-[node name="BodyArea" type="Area2D" parent="." groups=[
-"player_body",
-]]
-collision_mask = 4
-
-[node name="BodyCollider" type="CollisionPolygon2D" parent="BodyArea"]
+[node name="BodyCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 2.5, 0 )
 scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( 30, 0, -30, 30, -30, -30 )
 
-[node name="BodyPolygon" type="Polygon2D" parent="BodyArea"]
+[node name="BodyPolygon" type="Polygon2D" parent="."]
 position = Vector2( 2.5, 0 )
 scale = Vector2( 0.5, 0.5 )
 color = Color( 0.00784314, 0.94902, 0, 1 )
 polygon = PoolVector2Array( 30, 0, -30, 30, -30, -30 )
 [connection signal="body_entered" from="ProximityArea" to="." method="_on_ProximityArea_body_entered"]
 [connection signal="body_exited" from="ProximityArea" to="." method="_on_ProximityArea_body_exited"]
-[connection signal="body_entered" from="BodyArea" to="." method="_on_BodyArea_body_entered"]
