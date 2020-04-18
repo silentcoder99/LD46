@@ -59,6 +59,7 @@ __meta__ = {
 [node name="ObjectMap" type="TileMap" parent="YSort"]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
+cell_tile_origin = 1
 cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -196619, 1, 0, -262135, 1, 0, 131063, 1, 0, 131075, 1, 0 )
