@@ -30,10 +30,13 @@ func _input(event):
 		print("hey!")
 		
 		if dancing:
+			var time = $AnimationPlayer.get_current_animation_position()
 			$AnimationPlayer.play("dance")
+			$AnimationPlayer.seek(time, true)
 		else:
-			$AnimationPlayer.stop()
-			$AnimationPlayer.seek(0, true)
+			var time = $AnimationPlayer.get_current_animation_position()
+			$AnimationPlayer.play("idle")
+			$AnimationPlayer.seek(time, true)
 			
 	if event.is_action_pressed("shoo"):
 		var shooed = $ProximityArea.get_overlapping_bodies()

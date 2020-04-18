@@ -43,20 +43,21 @@ func _process(delta):
 		dancing = false
 	
 	if not dancing_old and dancing:
+		var time = $AnimationPlayer.get_current_animation_position()
 		$AnimationPlayer.play("dance")
-		$AnimationPlayer.seek(dance_time_offset, true);
+		$AnimationPlayer.seek(time, true);
 		player.nearby_partiers += 1
 		
 		
 	if dancing_old and not dancing:
 		player.nearby_partiers -= 1
-		$AnimationPlayer.stop()
-		$AnimationPlayer.seek(0, true)
+		var time = $AnimationPlayer.get_current_animation_position()
+		$AnimationPlayer.play("idle")
+		$AnimationPlayer.seek(time, true);
 		
 	dancing_old = dancing
 
 func _physics_process(delta):
-	
 	if moving:
 		apply_impulse(Vector2(), move_direction * speed)
 

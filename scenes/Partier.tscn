@@ -1,11 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/Partier.gd" type="Script" id=1]
 [ext_resource path="res://scenes/TipAnimation.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/1blue.png" type="Texture" id=3]
-[ext_resource path="res://sprites/2blue.png" type="Texture" id=4]
-[ext_resource path="res://sprites/3blue.png" type="Texture" id=5]
-[ext_resource path="res://sprites/4blue.png" type="Texture" id=6]
+[ext_resource path="res://sprites/blue boy/dancing/1blue.png" type="Texture" id=3]
+[ext_resource path="res://sprites/blue boy/dancing/2blue.png" type="Texture" id=4]
+[ext_resource path="res://sprites/blue boy/dancing/3blue.png" type="Texture" id=5]
+[ext_resource path="res://sprites/blue boy/dancing/4blue.png" type="Texture" id=6]
+[ext_resource path="res://sprites/blue boy/idle/blue1.png" type="Texture" id=7]
+[ext_resource path="res://sprites/blue boy/idle/blue2.png" type="Texture" id=8]
+[ext_resource path="res://sprites/blue boy/idle/blue3.png" type="Texture" id=9]
+[ext_resource path="res://sprites/blue boy/idle/blue4.png" type="Texture" id=10]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -21,7 +25,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
-"transitions": PoolRealArray( 1.31951, 3.03143, 2, 1 ),
+"transitions": PoolRealArray( 1.31951, 9.18958, 1.93187, 2 ),
 "update": 1,
 "values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 }
@@ -40,7 +44,23 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 4.14106 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2.25, 1 )
 
 [node name="Partier" type="RigidBody2D" groups=[
@@ -63,7 +83,9 @@ wait_time = 0.05
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 anims/dance = SubResource( 2 )
+anims/idle = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -71,7 +93,7 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )
 scale = Vector2( 4, 4 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="MoveDurationTimer" type="Timer" parent="."]
 one_shot = true
