@@ -76,14 +76,10 @@ margin_top = 20.0
 margin_right = -20.0
 margin_bottom = 97.0
 custom_fonts/font = SubResource( 3 )
-text = "Cash  $100"
+text = "Cash  $0"
 align = 2
 
 [node name="DamageRect" type="ColorRect" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 0.305882, 0.305882, 0 )
-
-[node name="BeatClock" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true

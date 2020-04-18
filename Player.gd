@@ -5,6 +5,8 @@ export var speed = 1000
 var nearby_partiers = 0
 var boundary = 285
 
+var money = 0;
+
 func _process(delta):
 	
 	var velocity = Vector2()

@@ -3,6 +3,8 @@ extends RigidBody2D
 export var speed = 400
 export var min_move_time = 0.5
 export var max_move_time = 1
+export var tip_amount = 1
+export (PackedScene) var TipAnimation
 
 var screen_size
 
@@ -20,6 +22,13 @@ func start_dancing(animTime):
 	
 func stop_dancing():
 	near_player = false
+	
+func give_tip():
+	player.money += tip_amount
+	var tip_animation = TipAnimation.instance()
+	tip_animation.rect_position = position + Vector2(-8, -27)
+	get_tree().get_root().add_child(tip_animation)
+	#add_child(tip_animation)
 	
 func _process(delta):
 	if near_player:
