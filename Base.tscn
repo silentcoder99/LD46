@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Base.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 50.0
+
+[node name="Base" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="TimeLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = -70.0
+margin_right = 20.0
+margin_bottom = -50.0
+text = "90.00"
+align = 1
+[connection signal="area_entered" from="." to="." method="_on_Base_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Base_area_exited"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://bg.png" type="Texture" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/LCD-N___.TTF" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4020, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 4020, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 4020 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 4020 )
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -4000, -4000, 0, 0, 0, 0, 4000, -4000, 0, 0, 0, 0, 4000, 4000, 0, 0, 0, 0, -4000, 4000, 0, 0, 0, 0, -4000, -4000 )
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+spawn_amount = 600
+spawn_area = 4000
+Enemy = ExtResource( 2 )
+time_limit = 3000
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 800, 800 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DebugLabel" type="Label" parent="UI"]
+margin_left = 18.9473
+margin_top = 12.6315
+margin_right = 191.947
+margin_bottom = 246.632
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TimeLabel" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -270.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 1 )
+text = "Time  100.00"
+align = 2
+
+[node name="HealthLabel" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -239.0
+margin_top = 55.0
+margin_right = -20.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 1 )
+text = "Health 3"
+align = 2
+
+[node name="DamageRect" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.305882, 0.305882, 0 )
+
+[node name="Walls" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="NorthWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 0, -4010 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NorthWallShape" type="CollisionShape2D" parent="Walls/NorthWall"]
+shape = SubResource( 2 )
+
+[node name="SouthWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 0, 4010 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SouthWallShape" type="CollisionShape2D" parent="Walls/SouthWall"]
+shape = SubResource( 3 )
+
+[node name="EastWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 4010, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EastWallShape" type="CollisionShape2D" parent="Walls/EastWall"]
+shape = SubResource( 4 )
+
+[node name="NorthWall4" type="StaticBody2D" parent="Walls"]
+position = Vector2( -4010, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NorthWallShape" type="CollisionShape2D" parent="Walls/NorthWall4"]
+shape = SubResource( 5 )
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource( 6 )
+
+[node name="SpawnPosition" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2( -4000, -4000 )
+rotation = 6.19157e-005
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
