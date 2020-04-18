@@ -33,21 +33,9 @@ func _process(delta):
 		
 	$UI/DebugLabel.text = str($Player.nearby_enemies) + '\n'
 	
-	$UI/HealthLabel.text = "Health %d" % $Player.health
-	
 	if damage_fade >= 0:
 		$UI/DamageRect.color = transparent.linear_interpolate(opaque, damage_fade)
 		damage_fade -= delta
 	
 func damage_splash():
 	damage_fade = 1
-	
-
-func _on_SpawnTimer_timeout():
-	var num_enemies = get_tree().get_nodes_in_group("enemy").size()
-	
-	if num_enemies < spawn_amount:
-		$SpawnPath/SpawnPosition.set_offset(randi())
-		var enemy = Enemy.instance()
-		add_child(enemy)
-		enemy.position = $SpawnPath/SpawnPosition.position

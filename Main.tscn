@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
@@ -23,11 +23,6 @@ extents = Vector2( 10, 320 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 320 )
-
-[sub_resource type="Curve2D" id=6]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -4000, -4000, 0, 0, 0, 0, 4000, -4000, 0, 0, 0, 0, 4000, 4000, 0, 0, 0, 0, -4000, 4000, 0, 0, 0, 0, -4000, -4000 )
-}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -69,23 +64,13 @@ custom_fonts/font = SubResource( 1 )
 text = "Time  100.00"
 align = 2
 
-[node name="HealthLabel" type="Label" parent="UI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -239.0
-margin_top = 55.0
-margin_right = -20.0
-margin_bottom = 89.0
-custom_fonts/font = SubResource( 1 )
-text = "Health 3"
-align = 2
-
 [node name="DamageRect" type="ColorRect" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 0.305882, 0.305882, 0 )
 
 [node name="Walls" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="NorthWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( 0, -310 )
@@ -122,15 +107,3 @@ __meta__ = {
 
 [node name="WestWallShape" type="CollisionShape2D" parent="Walls/WestWall"]
 shape = SubResource( 5 )
-
-[node name="SpawnPath" type="Path2D" parent="."]
-curve = SubResource( 6 )
-
-[node name="SpawnPosition" type="PathFollow2D" parent="SpawnPath"]
-position = Vector2( -4000, -4000 )
-rotation = 6.19157e-005
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
