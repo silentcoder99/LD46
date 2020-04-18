@@ -10,9 +10,8 @@ radius = 200.0
 ]]
 mode = 2
 gravity_scale = 0.0
-linear_damp = 30.0
+linear_damp = 50.0
 script = ExtResource( 1 )
-speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

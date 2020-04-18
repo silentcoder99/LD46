@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export var speed = 1
+export var speed = 1000
 
 var nearby_enemies = 0
 var boundary = 285
