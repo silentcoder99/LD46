@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Partier.tscn" type="PackedScene" id=2]
 [ext_resource path="res://TileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://fonts/LCD-N___.TTF" type="DynamicFontData" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://TrashCan.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 use_filter = true
@@ -62,6 +63,13 @@ cell_size = Vector2( 32, 32 )
 cell_tile_origin = 1
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -196619, 1, 0, -262135, 1, 0, 131063, 1, 0, 131075, 1, 0 )
+tile_data = PoolIntArray( -458756, 3, 0, -524285, 3, 0, -131082, 3, 0, -196599, 3, 0, 131062, 3, 0, 65545, 3, 0 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 16, -16 )
+
+[node name="TrashCan2" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 144, 48 )
+
+[node name="TrashCan" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( -144, 48 )
