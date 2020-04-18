@@ -6,7 +6,7 @@
 [ext_resource path="res://fonts/LCD-N___.TTF" type="DynamicFontData" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 use_filter = true
 extra_spacing_char = 1
@@ -14,7 +14,8 @@ font_data = ExtResource( 4 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
-spawn_area = 300
+spawn_amount = 8
+spawn_area = 100
 Partier = ExtResource( 2 )
 time_limit = 3000
 
@@ -42,7 +43,7 @@ margin_left = -270.0
 margin_top = 20.0
 margin_right = -20.0
 margin_bottom = 97.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Cash  $0"
 align = 2
 
@@ -64,18 +65,3 @@ format = 1
 tile_data = PoolIntArray( -196619, 1, 0, -262135, 1, 0, 131063, 1, 0, 131075, 1, 0 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 5 )]
-
-[node name="Partier2" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -208, -105 )
-
-[node name="Partier3" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 218, 12 )
-
-[node name="Partier4" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 85, -233 )
-
-[node name="Partier5" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -108.906, 38.4682 )
-
-[node name="Partier" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -39.0998, -157.654 )

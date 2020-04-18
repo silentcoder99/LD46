@@ -75,17 +75,13 @@ func shoo(direction):
 	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
 	$MoveDurationTimer.start()
 
-func _on_MoveTimer_timeout():
-	print("Moving!")
-	
+func _on_MoveTimer_timeout():	
 	move_direction = Vector2(1, 0).rotated(rand_range(0, 2 * PI));
 	moving = true
 	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
 	$MoveDurationTimer.start()
 
 func _on_MoveDurationTimer_timeout():
-	print("Not moving!")
-	
 	moving = false
 	
 	$MoveTimer.wait_time = rand_range(min_move_delay, max_move_delay)
