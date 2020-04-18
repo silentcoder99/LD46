@@ -1,9 +1,11 @@
 [gd_resource type="TileSet" load_steps=8 format=2]
 
-[ext_resource path="res://floor.png" type="Texture" id=1]
-[ext_resource path="res://trash can.png" type="Texture" id=2]
-[ext_resource path="res://wall.png" type="Texture" id=3]
-[ext_resource path="res://table.png" type="Texture" id=4]
+[ext_resource path="res://sprites/floor.png" type="Texture" id=1]
+[ext_resource path="res://sprites/trash can.png" type="Texture" id=2]
+[ext_resource path="res://sprites/wall.png" type="Texture" id=3]
+[ext_resource path="res://sprites/table.png" type="Texture" id=4]
+
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 23.4316, 32, 23.2701, 32, 32, 0, 32 )
