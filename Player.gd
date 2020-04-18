@@ -25,7 +25,7 @@ func _input(event):
 
 func _on_ProximityArea_body_entered(body):
 	if is_body_partier(body):
-		body.start_dancing()
+		body.start_dancing($AnimationPlayer.get_current_animation_position())
 
 func _on_ProximityArea_body_exited(body):
 	if is_body_partier(body):

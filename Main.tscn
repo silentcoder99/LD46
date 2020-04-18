@@ -83,3 +83,7 @@ align = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 0.305882, 0.305882, 0 )
+
+[node name="BeatClock" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

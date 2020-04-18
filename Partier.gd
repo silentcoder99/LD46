@@ -13,8 +13,10 @@ var near_player = false
 var player
 var attraction
 
-func start_dancing():
+func start_dancing(animTime):
 	near_player = true
+	$AnimationPlayer.play("dance")
+	$AnimationPlayer.seek(animTime, true);
 	
 func stop_dancing():
 	near_player = false
@@ -27,12 +29,12 @@ func _process(delta):
 	
 	if not dancing_old and dancing:
 		player.nearby_partiers += 1
-		$AnimatedSprite.play()
+		
 		
 	if dancing_old and not dancing:
 		player.nearby_partiers -= 1
-		$AnimatedSprite.stop()
-		$AnimatedSprite.set_frame(0)
+		$AnimationPlayer.stop()
+		$AnimationPlayer.seek(0, true)
 		
 	dancing_old = dancing
 
