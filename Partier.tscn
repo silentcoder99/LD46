@@ -1,18 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Partier.gd" type="Script" id=1]
 [ext_resource path="res://TipAnimation.tscn" type="PackedScene" id=2]
-[ext_resource path="res://person.png" type="Texture" id=3]
-[ext_resource path="res://person_upside_down.png" type="Texture" id=4]
+[ext_resource path="res://1blue.png" type="Texture" id=3]
+[ext_resource path="res://2blue.png" type="Texture" id=4]
+[ext_resource path="res://3blue.png" type="Texture" id=5]
+[ext_resource path="res://4blue.png" type="Texture" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 4.5, 7.5 )
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "dance"
-length = 0.5
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -21,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1.31951, 3.03143, 2, 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ), ExtResource( 4 ) ]
+"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -33,13 +31,16 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.75 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "give_tip"
 } ]
 }
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.5, 7.5 )
 
 [node name="Partier" type="RigidBody2D" groups=[
 "partier",
@@ -57,15 +58,14 @@ TipAnimation = ExtResource( 2 )
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.05
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 1 )
-scale = Vector2( 2, 2 )
-shape = SubResource( 3 )
-
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dance = SubResource( 4 )
+anims/dance = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 4, 4 )
+shape = SubResource( 2 )
 [connection signal="timeout" from="MoveTimer" to="." method="_on_MoveTimer_timeout"]

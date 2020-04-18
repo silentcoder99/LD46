@@ -27,7 +27,7 @@ func stop_dancing():
 func give_tip():
 	player.money += tip_amount
 	var tip_animation = TipAnimation.instance()
-	tip_animation.rect_position = position + Vector2(-8, -27)
+	tip_animation.rect_position = position + Vector2(-8, -36)
 	get_tree().get_root().add_child(tip_animation)
 	#add_child(tip_animation)
 	
