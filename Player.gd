@@ -34,6 +34,12 @@ func _input(event):
 		else:
 			$AnimationPlayer.stop()
 			$AnimationPlayer.seek(0, true)
+			
+	if event.is_action_pressed("shoo"):
+		var shooed = $ProximityArea.get_overlapping_bodies()
+		for body in shooed:
+			if is_body_partier(body):
+				body.shoo(position.direction_to(body.position))
 
 func _on_ProximityArea_body_entered(body):
 	if is_body_partier(body):

@@ -68,6 +68,13 @@ func _ready():
 	$MoveTimer.wait_time = rand_range(0, max_move_delay)
 	$MoveTimer.start()
 
+func shoo(direction):
+	$MoveTimer.stop()
+	move_direction = direction
+	moving = true
+	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
+	$MoveDurationTimer.start()
+
 func _on_MoveTimer_timeout():
 	print("Moving!")
 	

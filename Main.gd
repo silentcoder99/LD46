@@ -23,7 +23,7 @@ func _ready():
 		spawn_position.y = randi() % (spawn_area * 2) - spawn_area
 		
 		var partier = Partier.instance()
-		add_child(partier)
+		$YSort.add_child(partier)
 		partier.position = spawn_position
 		
 func _process(delta):
@@ -31,8 +31,8 @@ func _process(delta):
 	if time_limit <= 0:
 		get_tree().reload_current_scene()
 		
-	$UI/DebugLabel.text = str($Player.nearby_partiers) + '\n'
-	$UI/MoneyLabel.text = "Cash $" + str($Player.money);
+	$UI/DebugLabel.text = str($YSort/Player.nearby_partiers) + '\n'
+	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money);
 	
 	if damage_fade >= 0:
 		$UI/DamageRect.color = transparent.linear_interpolate(opaque, damage_fade)
