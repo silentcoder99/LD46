@@ -27,21 +27,32 @@ func _physics_process(delta):
 	if(!dancing):
 		apply_impulse(Vector2(), velocity.normalized() * speed)
 	
+func start_dancing():
+	var time = $AnimationPlayer.get_current_animation_position()
+	$AnimationPlayer.play("dance")
+	$AnimationPlayer.seek(time, true)
+
+func stop_dancing():
+	var time = $AnimationPlayer.get_current_animation_position()
+	$AnimationPlayer.play("idle")
+	$AnimationPlayer.seek(time, true)
+	
 func _input(event):
 	if event.is_action_pressed("dance"):
 		dancing = !dancing
 		
 		if dancing:
-			var time = $AnimationPlayer.get_current_animation_position()
-			$AnimationPlayer.play("dance")
-			$AnimationPlayer.seek(time, true)
+			start_dancing()
 		else:
-			var time = $AnimationPlayer.get_current_animation_position()
-			$AnimationPlayer.play("idle")
-			$AnimationPlayer.seek(time, true)
+			stop_dancing()
 			
 	if event.is_action_pressed("shoo"):
+		if dancing:
+			dancing = false
+			stop_dancing()
+		
 		$ShooSound.play()
+		$ShooAnimator.play("shoo")
 		var shooed = $ProximityArea.get_overlapping_bodies()
 		for body in shooed:
 			if is_body_partier(body):
