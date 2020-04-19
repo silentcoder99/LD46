@@ -9,6 +9,7 @@ var money = 0
 var dancing = false
 
 var complaints = 0
+var score = 0
 
 func _process(delta):
 	

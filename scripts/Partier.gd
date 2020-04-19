@@ -38,6 +38,7 @@ func set_idle_frame(frame):
 	
 func give_tip():
 	player.money += tip_amount
+	player.score += tip_amount
 	var tip_animation = TipAnimation.instance()
 	tip_animation.set_amount(tip_amount)
 	tip_animation.rect_position = position + Vector2(0, -36)
@@ -87,6 +88,7 @@ func shoo(direction):
 
 func hurt():
 	player.complaints += 1
+	player.score -= 5
 
 func _on_MoveTimer_timeout():	
 	move_direction = Vector2(1, 0).rotated(rand_range(0, 2 * PI));

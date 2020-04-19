@@ -12,7 +12,9 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "dance"
+length = 1.09
 loop = true
+step = 0.27
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -20,7 +22,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
 "transitions": PoolRealArray( 1.31951, 9.18958, 3.86375, 2 ),
 "update": 0,
 "values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
@@ -32,7 +34,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.75 ),
+"times": PoolRealArray( 0.81 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -42,7 +44,9 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
+length = 1.09
 loop = true
+step = 0.27
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -50,7 +54,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
 "transitions": PoolRealArray( 1, 1, 1, 14.9285 ),
 "update": 0,
 "values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]

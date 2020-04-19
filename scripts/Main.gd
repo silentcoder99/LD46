@@ -37,10 +37,10 @@ func _process(delta):
 	if time_limit <= 0:
 		get_tree().reload_current_scene()
 		
-	$UI/DebugLabel.text = str($YSort/Player.nearby_partiers) + '\n'
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
 	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/10"
 	$UI/TimeLabel.text = "Time " + str(time) + " AM"
+	$UI/ScoreLabel.text = "Score " + str($YSort/Player.score)
 	
 	if fade_amount >= 0 and is_game_over:
 		$UI/FadeRect.color = opaque.linear_interpolate(transparent, fade_amount)
@@ -62,8 +62,10 @@ func game_over(title, message):
 	
 	$UI/GameOverLabel.text = title
 	$UI/GameOverSubLabel.text = message
+	$UI/GameOverScore.text = $UI/ScoreLabel.text
 	$UI/GameOverLabel.show()
 	$UI/GameOverSubLabel.show()
+	$UI/GameOverScore.show()
 	
 
 func _on_Clock_timeout():

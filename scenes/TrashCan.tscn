@@ -18,11 +18,14 @@ script = ExtResource( 1 )
 trash_can_texture = ExtResource( 2 )
 fire_texture = ExtResource( 3 )
 TipAnimation = ExtResource( 4 )
+min_disaster_delay = 10
+max_disaster_delay = 20
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 
@@ -37,6 +40,7 @@ attenuation = 0.217638
 [node name="FixArea" type="Area2D" parent="."]
 
 [node name="FixColliderShape" type="CollisionShape2D" parent="FixArea"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="ResolvedSound" type="AudioStreamPlayer2D" parent="."]

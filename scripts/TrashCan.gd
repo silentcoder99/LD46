@@ -32,6 +32,7 @@ func repair():
 	$RepairBar.show()
 	
 	player.money -= repair_cost
+	player.score += 5
 	var tip_animation = TipAnimation.instance()
 	tip_animation.set_amount(-repair_cost)
 	tip_animation.rect_position = position + Vector2(0, -36)
