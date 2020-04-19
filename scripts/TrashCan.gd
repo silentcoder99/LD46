@@ -9,6 +9,8 @@ export var max_disaster_delay = 10
 
 export var repair_cost = 10
 
+var ready_to_combust = false
+var ready_to_extinguish = false
 var on_fire = false
 
 var player
@@ -49,7 +51,16 @@ func extinguish():
 	$CombustTimer.start()
 
 func _on_CombustTimer_timeout():
-	combust()
+	ready_to_combust = true
+
+func check_combustion():
+	if ready_to_combust:
+		combust()
+		ready_to_combust = false
+		
+	if ready_to_extinguish:
+		extinguish()
+		ready_to_extinguish = false
 
 func _on_FixArea_body_entered(body):
 	if "player" in body.get_groups():
@@ -67,4 +78,4 @@ func _on_FixArea_body_entered(body):
 			body.shoo(position.direction_to(body.position))
 
 func _on_RepairTimer_timeout():
-	extinguish()
+	ready_to_extinguish = true

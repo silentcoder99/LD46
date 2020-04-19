@@ -1,10 +1,67 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Partier.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/purple boy/dancing/1purple.png" type="Texture" id=2]
+[ext_resource path="res://sprites/purple boy/dancing/2purple.png" type="Texture" id=3]
+[ext_resource path="res://sprites/purple boy/dancing/3purple.png" type="Texture" id=4]
+[ext_resource path="res://sprites/purple boy/dancing/4purple.png" type="Texture" id=5]
+[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/purple boy/idle/purple2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/purple boy/idle/purple3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/purple boy/idle/purple4.png" type="Texture" id=9]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "dance"
+length = 1.09
+loop = true
+step = 0.27
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
+"transitions": PoolRealArray( 2.2974, 34.2967, 3.86375, 2.73208 ),
+"update": 0,
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "give_tip"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 1.09
+loop = true
+step = 0.27
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
+"transitions": PoolRealArray( 1, 1, 1, 35.5062 ),
+"update": 0,
+"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+}
 
 [node name="PurpleBoy" instance=ExtResource( 1 )]
 physics_material_override = SubResource( 1 )
@@ -13,5 +70,9 @@ min_move_delay = 0.5
 max_move_delay = 1
 max_move_duration = 2
 
+[node name="AnimationPlayer" parent="." index="2"]
+anims/dance = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
 [node name="Sprite" parent="." index="3"]
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )

@@ -17,10 +17,10 @@ size = 8
 extra_spacing_char = 1
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 8
 font_data = ExtResource( 7 )
 
@@ -99,7 +99,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -23.0
 margin_bottom = -9.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "GAME OVER"
 align = 1
 
@@ -110,7 +110,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -1.5
 margin_bottom = 7.5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Your party was shut down!"
 align = 1
 
@@ -121,7 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = 12.5
 margin_bottom = 21.5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Score 0"
 align = 1
 

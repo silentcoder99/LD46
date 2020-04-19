@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/partygoer_interested.wav-f73e0892391d01c6c963b1f709f9e7a0.sample"
+
+[deps]
+
+source_file="res://sounds/partygoer_interested.wav"
+dest_files=[ "res://.import/partygoer_interested.wav-f73e0892391d01c6c963b1f709f9e7a0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

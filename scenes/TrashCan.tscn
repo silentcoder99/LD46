@@ -11,7 +11,7 @@
 [ext_resource path="res://sounds/disaster.wav" type="AudioStream" id=9]
 [ext_resource path="res://sounds/disaster_resolved.wav" type="AudioStream" id=10]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "fire"
 length = 1.09
 loop = true
@@ -28,11 +28,25 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "check_combustion"
+} ]
+}
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 6 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 30.0
 
 [sub_resource type="StyleBoxFlat" id=4]
@@ -52,11 +66,11 @@ trash_can_texture = ExtResource( 2 )
 fire_texture = ExtResource( 3 )
 TipAnimation = ExtResource( 4 )
 min_disaster_delay = 10
-max_disaster_delay = 20
+max_disaster_delay = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fire"
-anims/fire = SubResource( 3 )
+anims/fire = SubResource( 1 )
 
 [node name="TrashCanSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -68,7 +82,7 @@ texture = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 10 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CombustTimer" type="Timer" parent="."]
 one_shot = true
@@ -82,7 +96,7 @@ attenuation = 0.217638
 
 [node name="FixColliderShape" type="CollisionShape2D" parent="FixArea"]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="ResolvedSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
