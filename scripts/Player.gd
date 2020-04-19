@@ -11,7 +11,7 @@ var dancing = false
 var complaints = 0
 var score = 0
 
-func _process(delta):
+func _physics_process(delta):
 	
 	var velocity = Vector2()
 	
