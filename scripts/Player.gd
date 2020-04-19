@@ -11,6 +11,10 @@ var dancing = false
 var complaints = 0
 var score = 0
 
+func play_tip_sound():
+	if not $TipSound.playing:
+		$TipSound.play()
+
 func _physics_process(delta):
 	
 	var velocity = Vector2()

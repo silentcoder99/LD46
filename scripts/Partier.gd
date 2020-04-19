@@ -37,6 +37,7 @@ func set_idle_frame(frame):
 	$Sprite.texture = idle_frames[character_index][frame]
 	
 func give_tip():
+	player.play_tip_sound()
 	player.money += tip_amount
 	player.score += tip_amount
 	var tip_animation = TipAnimation.instance()
