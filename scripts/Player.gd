@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 export var speed = 1000
+export (PackedScene) var Arrow
 
 var nearby_partiers = 0
 var boundary = 285
@@ -10,6 +11,11 @@ var dancing = false
 
 var complaints = 0
 var score = 0
+
+func add_arrow(fire):
+	var arrow = Arrow.instance()
+	arrow.fire = fire
+	add_child(arrow)
 
 func play_tip_sound():
 	if not $TipSound.playing:
@@ -42,6 +48,15 @@ func stop_dancing():
 	$AnimationPlayer.seek(time, true)
 	
 func _input(event):
+	#Stop dancing if player attempts to move
+	if event.is_action_pressed("ui_up") or \
+			event.is_action_pressed("ui_down") or \
+			event.is_action_pressed("ui_left") or \
+			event.is_action_pressed("ui_right"):
+		if dancing:
+			dancing = false
+			stop_dancing()
+	
 	if event.is_action_pressed("dance"):
 		dancing = !dancing
 		

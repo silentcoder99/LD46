@@ -60,7 +60,9 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0, 0.815686, 0.00392157, 1 )
 
-[node name="TrashCan" type="StaticBody2D"]
+[node name="TrashCan" type="StaticBody2D" groups=[
+"animated",
+]]
 script = ExtResource( 1 )
 trash_can_texture = ExtResource( 2 )
 fire_texture = ExtResource( 3 )

@@ -12,6 +12,7 @@ export var repair_cost = 10
 var ready_to_combust = false
 var ready_to_extinguish = false
 var on_fire = false
+var repairing = false
 
 var player
 
@@ -28,8 +29,10 @@ func combust():
 	on_fire = true
 	$FireSprite.show()
 	$DisasterSound.play()
+	player.add_arrow(self)
 	
 func repair():
+	repairing = true
 	$RepairTimer.start()
 	$RepairBar.show()
 	
@@ -44,6 +47,7 @@ func extinguish():
 	$RepairBar.hide()
 	
 	on_fire = false
+	repairing = false
 	$FireSprite.hide()
 	$ResolvedSound.play()
 	

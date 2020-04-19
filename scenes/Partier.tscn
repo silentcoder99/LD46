@@ -72,6 +72,7 @@ extents = Vector2( 2.25, 1 )
 
 [node name="Partier" type="RigidBody2D" groups=[
 "partier",
+"animated",
 ]]
 collision_layer = 3
 mode = 2
