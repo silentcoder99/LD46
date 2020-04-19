@@ -1,17 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/TrashCan.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tiles/trash can.png" type="Texture" id=2]
 [ext_resource path="res://sprites/tiles/fire!.png" type="Texture" id=3]
-[ext_resource path="res://sounds/disaster.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/TipAnimation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/disaster.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/disaster_resolved.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 6 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 30.0
 
 [node name="TrashCan" type="StaticBody2D"]
 script = ExtResource( 1 )
 trash_can_texture = ExtResource( 2 )
 fire_texture = ExtResource( 3 )
+TipAnimation = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -22,10 +28,20 @@ shape = SubResource( 1 )
 
 [node name="CombustTimer" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="DisasterSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
+max_distance = 20000.0
+attenuation = 0.217638
+
+[node name="FixArea" type="Area2D" parent="."]
+
+[node name="FixColliderShape" type="CollisionShape2D" parent="FixArea"]
+shape = SubResource( 2 )
+
+[node name="ResolvedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 max_distance = 20000.0
 attenuation = 0.217638
 [connection signal="timeout" from="CombustTimer" to="." method="_on_CombustTimer_timeout"]
+[connection signal="body_entered" from="FixArea" to="." method="_on_FixArea_body_entered"]

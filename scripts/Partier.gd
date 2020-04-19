@@ -39,7 +39,8 @@ func set_idle_frame(frame):
 func give_tip():
 	player.money += tip_amount
 	var tip_animation = TipAnimation.instance()
-	tip_animation.rect_position = position + Vector2(-8, -36)
+	tip_animation.set_amount(tip_amount)
+	tip_animation.rect_position = position + Vector2(0, -36)
 	get_tree().get_root().add_child(tip_animation)
 	#add_child(tip_animation)
 	
