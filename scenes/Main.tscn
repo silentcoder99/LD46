@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PurpleBoy.tscn" type="PackedScene" id=2]
@@ -6,13 +6,18 @@
 [ext_resource path="res://scenes/BlueBoy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://TileSet.tres" type="TileSet" id=5]
 [ext_resource path="res://fonts/LCD-N___.TTF" type="DynamicFontData" id=6]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/TrashCan.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/lcd_lcd_mono/LCDMonoWinTT/LCDMU___.TTF" type="DynamicFontData" id=7]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/TrashCan.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 use_filter = true
 extra_spacing_char = 1
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 7 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -57,16 +62,42 @@ margin_top = 38.0
 margin_right = -20.0
 margin_bottom = 115.0
 custom_fonts/font = SubResource( 1 )
-text = "Complaints 0"
+text = "Complaints 0/10"
 align = 2
 
-[node name="DamageRect" type="ColorRect" parent="UI"]
+[node name="FadeRect" type="ColorRect" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 0.305882, 0.305882, 0 )
+color = Color( 0.06, 0.06, 0.06, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="GameOverLabel" type="Label" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = -25.0
+margin_right = 38.0
+margin_bottom = 18.5
+text = "GAME OVER"
+
+[node name="GameOverSubLabel" type="Label" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -4.5
+margin_right = 50.0
+margin_bottom = 4.5
+custom_fonts/font = SubResource( 2 )
+text = "Your party was shut down!"
+align = 1
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -78,11 +109,11 @@ cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -458756, 3, 0, -524285, 3, 0, -131082, 3, 0, -196599, 3, 0, 131062, 3, 0, 65545, 3, 0 )
 
-[node name="Player" parent="YSort" instance=ExtResource( 7 )]
+[node name="Player" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 16, -16 )
 
-[node name="TrashCan2" parent="YSort" instance=ExtResource( 8 )]
+[node name="TrashCan2" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 144, 48 )
 
-[node name="TrashCan" parent="YSort" instance=ExtResource( 8 )]
+[node name="TrashCan" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -144, 48 )

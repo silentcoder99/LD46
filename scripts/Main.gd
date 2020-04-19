@@ -5,17 +5,22 @@ export (int) var spawn_area
 export (Array, PackedScene) var Partiers
 export var time_limit = 100
 
-var damage_fade = 0
+var fade_amount = 1
 var transparent
 var opaque
+var fade_rate = 0.7
+
+var restart_time = 4
+
+var is_game_over = false
 
 func _ready():
 	OS.set_window_maximized(true)
 	
 	randomize()
 	
-	transparent = $UI/DamageRect.color
-	opaque = Color(transparent.r, transparent.g, transparent.b, 0.4)
+	transparent = $UI/FadeRect.color
+	opaque = Color(transparent.r, transparent.g, transparent.b, 0.6)
 	
 	for i in range(spawn_amount):
 		var spawn_position = Vector2()
@@ -33,11 +38,24 @@ func _process(delta):
 		
 	$UI/DebugLabel.text = str($YSort/Player.nearby_partiers) + '\n'
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
-	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints)
+	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/10"
 	
-	if damage_fade >= 0:
-		$UI/DamageRect.color = transparent.linear_interpolate(opaque, damage_fade)
-		damage_fade -= delta
+	if fade_amount >= 0 and is_game_over:
+		$UI/FadeRect.color = opaque.linear_interpolate(transparent, fade_amount)
+		fade_amount -= delta * fade_rate
+		
+	if is_game_over:
+		restart_time -= delta
+		if restart_time <= 0:
+			get_tree().reload_current_scene()
+		
+	if $YSort/Player.complaints >= 10:
+		game_over("Your party was shut down!")
 	
-func damage_splash():
-	damage_fade = 1
+func game_over(message):
+	is_game_over = true
+	
+	$UI/GameOverSubLabel.text = message
+	$UI/GameOverLabel.show()
+	$UI/GameOverSubLabel.show()
+	
