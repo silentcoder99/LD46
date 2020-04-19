@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/alert4.wav-91699eac38b79cd394afe38102a676a4.sample"
+
+[deps]
+
+source_file="res://sounds/alert4.wav"
+dest_files=[ "res://.import/alert4.wav-91699eac38b79cd394afe38102a676a4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

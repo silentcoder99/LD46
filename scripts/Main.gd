@@ -60,15 +60,15 @@ func _process(delta):
 		game_over("CONGRATULATIONS", "Your party was a success!")
 	
 func game_over(title, message):
-	is_game_over = true
-	
-	$UI/GameOverLabel.text = title
-	$UI/GameOverSubLabel.text = message
-	$UI/GameOverScore.text = $UI/ScoreLabel.text
-	$UI/GameOverLabel.show()
-	$UI/GameOverSubLabel.show()
-	$UI/GameOverScore.show()
-	
+	if not is_game_over:
+		is_game_over = true
+		
+		$UI/GameOverLabel.text = title
+		$UI/GameOverSubLabel.text = message
+		$UI/GameOverScore.text = $UI/ScoreLabel.text
+		$UI/GameOverLabel.show()
+		$UI/GameOverSubLabel.show()
+		$UI/GameOverScore.show()
 
 func _on_Clock_timeout():
 	time += 1

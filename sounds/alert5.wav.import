@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/alert5.wav-8cb1f67832f50b35c6d69f8cc5ec877b.sample"
+
+[deps]
+
+source_file="res://sounds/alert5.wav"
+dest_files=[ "res://.import/alert5.wav-8cb1f67832f50b35c6d69f8cc5ec877b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

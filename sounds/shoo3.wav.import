@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shoo3.wav-d4fd9b956337993cefa5176c797e93a7.sample"
+
+[deps]
+
+source_file="res://sounds/shoo3.wav"
+dest_files=[ "res://.import/shoo3.wav-d4fd9b956337993cefa5176c797e93a7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

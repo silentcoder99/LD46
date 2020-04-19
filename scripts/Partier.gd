@@ -79,7 +79,6 @@ func _ready():
 	$MoveTimer.start()
 
 func shoo(direction):
-	$GoblinSound.play()
 	$MoveTimer.stop()
 	move_direction = direction
 	moving = true
@@ -87,6 +86,7 @@ func shoo(direction):
 	$MoveDurationTimer.start()
 
 func hurt():
+	$HurtSound.play()
 	player.complaints += 1
 	player.score -= 5
 

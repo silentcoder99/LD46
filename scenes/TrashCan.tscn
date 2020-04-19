@@ -8,8 +8,8 @@
 [ext_resource path="res://sprites/tiles/fire2.png" type="Texture" id=6]
 [ext_resource path="res://sprites/tiles/fire3.png" type="Texture" id=7]
 [ext_resource path="res://sprites/tiles/fire4.png" type="Texture" id=8]
-[ext_resource path="res://sounds/disaster.wav" type="AudioStream" id=9]
-[ext_resource path="res://sounds/disaster_resolved.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/alert6.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/alert2.wav" type="AudioStream" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fire"
@@ -89,18 +89,17 @@ one_shot = true
 
 [node name="DisasterSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
-max_distance = 20000.0
+max_distance = 4000.0
 attenuation = 0.217638
 
 [node name="FixArea" type="Area2D" parent="."]
 
 [node name="FixColliderShape" type="CollisionShape2D" parent="FixArea"]
-visible = false
 shape = SubResource( 3 )
 
 [node name="ResolvedSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
-max_distance = 20000.0
+max_distance = 4000.0
 attenuation = 0.217638
 
 [node name="RepairTimer" type="Timer" parent="."]
