@@ -66,9 +66,9 @@ text = "Score 0"
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -270.0
-margin_top = 31.0
+margin_top = 32.0
 margin_right = -20.0
-margin_bottom = 108.0
+margin_bottom = 109.0
 custom_fonts/font = SubResource( 1 )
 text = "Complaints 0/10"
 align = 2
@@ -93,6 +93,7 @@ __meta__ = {
 }
 
 [node name="GameOverLabel" type="Label" parent="UI"]
+visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -103,6 +104,7 @@ text = "GAME OVER"
 align = 1
 
 [node name="GameOverSubLabel" type="Label" parent="UI"]
+visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -113,6 +115,7 @@ text = "Your party was shut down!"
 align = 1
 
 [node name="GameOverScore" type="Label" parent="UI"]
+visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5

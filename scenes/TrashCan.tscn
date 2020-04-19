@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/TrashCan.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tiles/trash can.png" type="Texture" id=2]
@@ -34,6 +34,17 @@ extents = Vector2( 16, 6 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 30.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0.815686, 0.00392157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0.666667, 0.00392157, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0.815686, 0.00392157, 1 )
 
 [node name="TrashCan" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -84,10 +95,14 @@ one_shot = true
 
 [node name="RepairBar" type="ProgressBar" parent="."]
 visible = false
-margin_left = -32.7843
-margin_top = -40.7759
-margin_right = 33.2157
-margin_bottom = -26.7759
+margin_left = -13.0
+margin_top = -24.0
+margin_right = 13.0
+margin_bottom = -20.0
+rect_min_size = Vector2( 0, 1 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+percent_visible = false
 [connection signal="timeout" from="CombustTimer" to="." method="_on_CombustTimer_timeout"]
 [connection signal="body_entered" from="FixArea" to="." method="_on_FixArea_body_entered"]
 [connection signal="timeout" from="RepairTimer" to="." method="_on_RepairTimer_timeout"]

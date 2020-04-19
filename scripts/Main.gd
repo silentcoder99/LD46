@@ -40,7 +40,9 @@ func _process(delta):
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
 	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/10"
 	$UI/TimeLabel.text = "Time " + str(time) + " AM"
-	$UI/ScoreLabel.text = "Score " + str($YSort/Player.score)
+	
+	if not is_game_over:
+		$UI/ScoreLabel.text = "Score " + str($YSort/Player.score)
 	
 	if fade_amount >= 0 and is_game_over:
 		$UI/FadeRect.color = opaque.linear_interpolate(transparent, fade_amount)
