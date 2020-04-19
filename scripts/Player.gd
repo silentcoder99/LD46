@@ -38,6 +38,7 @@ func _input(event):
 			$AnimationPlayer.seek(time, true)
 			
 	if event.is_action_pressed("shoo"):
+		$ShooSound.play()
 		var shooed = $ProximityArea.get_overlapping_bodies()
 		for body in shooed:
 			if is_body_partier(body):

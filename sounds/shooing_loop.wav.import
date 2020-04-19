@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shooing_loop.wav-330186c1c806b96d00a366962d59a4be.sample"
+
+[deps]
+
+source_file="res://sounds/shooing_loop.wav"
+dest_files=[ "res://.import/shooing_loop.wav-330186c1c806b96d00a366962d59a4be.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

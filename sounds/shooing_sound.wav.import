@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shooing_sound.wav-f8710e050a857657da3cda9a6d46dac0.sample"
+
+[deps]
+
+source_file="res://sounds/shooing_sound.wav"
+dest_files=[ "res://.import/shooing_sound.wav-f8710e050a857657da3cda9a6d46dac0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

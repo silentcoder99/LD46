@@ -1,14 +1,15 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://sprites/red girl/idle/red1.png" type="Texture" id=2]
-[ext_resource path="res://sprites/red girl/dancing/1red.png" type="Texture" id=3]
-[ext_resource path="res://sprites/red girl/dancing/2red.png" type="Texture" id=4]
-[ext_resource path="res://sprites/red girl/dancing/3red.png" type="Texture" id=5]
-[ext_resource path="res://sprites/red girl/dancing/4red.png" type="Texture" id=6]
-[ext_resource path="res://sprites/red girl/idle/red2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/red girl/idle/red3.png" type="Texture" id=8]
-[ext_resource path="res://sprites/red girl/idle/red4.png" type="Texture" id=9]
+[ext_resource path="res://sounds/shooing_sound.wav" type="AudioStream" id=2]
+[ext_resource path="res://sprites/red girl/idle/red1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/red girl/dancing/1red.png" type="Texture" id=4]
+[ext_resource path="res://sprites/red girl/dancing/2red.png" type="Texture" id=5]
+[ext_resource path="res://sprites/red girl/dancing/3red.png" type="Texture" id=6]
+[ext_resource path="res://sprites/red girl/dancing/4red.png" type="Texture" id=7]
+[ext_resource path="res://sprites/red girl/idle/red2.png" type="Texture" id=8]
+[ext_resource path="res://sprites/red girl/idle/red3.png" type="Texture" id=9]
+[ext_resource path="res://sprites/red girl/idle/red4.png" type="Texture" id=10]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -26,7 +27,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+"values": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -43,7 +44,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 71.0125, 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+"values": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="CircleShape2D" id=4]
@@ -62,8 +63,12 @@ linear_damp = 50.0
 script = ExtResource( 1 )
 speed = 500
 
+[node name="ShooSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -8.0
+
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

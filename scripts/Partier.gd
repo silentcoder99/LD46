@@ -77,6 +77,7 @@ func _ready():
 	$MoveTimer.start()
 
 func shoo(direction):
+	$GoblinSound.play()
 	$MoveTimer.stop()
 	move_direction = direction
 	moving = true

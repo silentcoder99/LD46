@@ -1,16 +1,17 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/Partier.gd" type="Script" id=1]
 [ext_resource path="res://scenes/TipAnimation.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/purple boy/dancing/1purple.png" type="Texture" id=3]
-[ext_resource path="res://sprites/purple boy/dancing/2purple.png" type="Texture" id=4]
-[ext_resource path="res://sprites/purple boy/dancing/3purple.png" type="Texture" id=5]
-[ext_resource path="res://sprites/purple boy/dancing/4purple.png" type="Texture" id=6]
-[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=7]
-[ext_resource path="res://sprites/purple boy/idle/purple2.png" type="Texture" id=8]
-[ext_resource path="res://sprites/purple boy/idle/purple3.png" type="Texture" id=9]
-[ext_resource path="res://sprites/purple boy/idle/purple4.png" type="Texture" id=10]
-[ext_resource path="res://sprites/blue boy/dancing/1blue.png" type="Texture" id=11]
+[ext_resource path="res://sounds/partygoer_flee.wav" type="AudioStream" id=3]
+[ext_resource path="res://sprites/purple boy/dancing/1purple.png" type="Texture" id=4]
+[ext_resource path="res://sprites/purple boy/dancing/2purple.png" type="Texture" id=5]
+[ext_resource path="res://sprites/purple boy/dancing/3purple.png" type="Texture" id=6]
+[ext_resource path="res://sprites/purple boy/dancing/4purple.png" type="Texture" id=7]
+[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=8]
+[ext_resource path="res://sprites/purple boy/idle/purple2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/purple boy/idle/purple3.png" type="Texture" id=10]
+[ext_resource path="res://sprites/purple boy/idle/purple4.png" type="Texture" id=11]
+[ext_resource path="res://sprites/blue boy/dancing/1blue.png" type="Texture" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -28,7 +29,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 2.2974, 34.2967, 3.86375, 2.73208 ),
 "update": 0,
-"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+"values": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -59,7 +60,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 35.5062 ),
 "update": 0,
-"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -80,6 +81,9 @@ max_move_delay = 5
 max_move_duration = 1
 TipAnimation = ExtResource( 2 )
 
+[node name="GoblinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
@@ -90,7 +94,7 @@ anims/dance = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )
