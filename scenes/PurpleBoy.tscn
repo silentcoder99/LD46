@@ -1,4 +1,13 @@
-extends RigidBody2D
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Partier.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends RigidBody2D
 
 export (Array, Array, Texture) var idle_frames
 export (Array, Array, Texture) var dancing_frames
@@ -51,7 +60,7 @@ func _process(delta):
 	
 	if not dancing_old and dancing:
 		var time = $AnimationPlayer.get_current_animation_position()
-		$AnimationPlayer.play("dance")
+		$AnimationPlayer.play(\"dance\")
 		$AnimationPlayer.seek(time, true);
 		player.nearby_partiers += 1
 		
@@ -59,7 +68,7 @@ func _process(delta):
 	if dancing_old and not dancing:
 		player.nearby_partiers -= 1
 		var time = $AnimationPlayer.get_current_animation_position()
-		$AnimationPlayer.play("idle")
+		$AnimationPlayer.play(\"idle\")
 		$AnimationPlayer.seek(time, true);
 		
 	dancing_old = dancing
@@ -70,7 +79,7 @@ func _physics_process(delta):
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	player = get_tree().get_nodes_in_group("player")[0]
+	player = get_tree().get_nodes_in_group(\"player\")[0]
 	
 	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
 	$MoveTimer.wait_time = rand_range(0, max_move_delay)
@@ -94,3 +103,15 @@ func _on_MoveDurationTimer_timeout():
 	
 	$MoveTimer.wait_time = rand_range(min_move_delay, max_move_delay)
 	$MoveTimer.start()
+"
+
+[node name="PurpleBoy" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = SubResource( 2 )
+speed = 400
+min_move_delay = 0.5
+max_move_delay = 1
+max_move_duration = 2
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 2 )

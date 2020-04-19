@@ -15,6 +15,7 @@ friction = 0.0
 
 [sub_resource type="Animation" id=2]
 loop = true
+step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -24,13 +25,14 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
+"update": 1,
 "values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "idle"
 loop = true
+step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -39,15 +41,15 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 2.37841 ),
+"transitions": PoolRealArray( 1, 1, 71.0125, 1 ),
 "update": 1,
 "values": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 100.0
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 2.25, 1 )
 
 [node name="Player" type="RigidBody2D" groups=[
@@ -66,7 +68,7 @@ texture = ExtResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/dance = SubResource( 2 )
-anims/idle = SubResource( 5 )
+anims/idle = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -86,11 +88,11 @@ visible = false
 collision_mask = 0
 
 [node name="ProximityCollider" type="CollisionShape2D" parent="ProximityArea"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 10 )
 scale = Vector2( 4, 4 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 [connection signal="body_entered" from="ProximityArea" to="." method="_on_ProximityArea_body_entered"]
 [connection signal="body_exited" from="ProximityArea" to="." method="_on_ProximityArea_body_exited"]

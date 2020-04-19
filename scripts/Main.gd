@@ -2,7 +2,7 @@ extends Node2D
 
 export (int) var spawn_amount
 export (int) var spawn_area
-export (PackedScene) var Partier
+export (Array, PackedScene) var Partiers
 export var time_limit = 100
 
 var damage_fade = 0
@@ -22,7 +22,7 @@ func _ready():
 		spawn_position.x = randi() % (spawn_area * 2) - spawn_area
 		spawn_position.y = randi() % (spawn_area * 2) - spawn_area
 		
-		var partier = Partier.instance()
+		var partier = Partiers[rand_range(0, len(Partiers))].instance()
 		$YSort.add_child(partier)
 		partier.position = spawn_position
 		

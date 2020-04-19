@@ -27,7 +27,6 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("dance"):
 		dancing = !dancing
-		print("hey!")
 		
 		if dancing:
 			var time = $AnimationPlayer.get_current_animation_position()
