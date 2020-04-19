@@ -10,9 +10,10 @@ var transparent
 var opaque
 var fade_rate = 0.7
 
-var restart_time = 4
-
+var restart_time = 5
 var is_game_over = false
+
+var time = 1
 
 func _ready():
 	OS.set_window_maximized(true)
@@ -39,6 +40,7 @@ func _process(delta):
 	$UI/DebugLabel.text = str($YSort/Player.nearby_partiers) + '\n'
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
 	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/10"
+	$UI/TimeLabel.text = "Time " + str(time) + " AM"
 	
 	if fade_amount >= 0 and is_game_over:
 		$UI/FadeRect.color = opaque.linear_interpolate(transparent, fade_amount)
@@ -50,12 +52,19 @@ func _process(delta):
 			get_tree().reload_current_scene()
 		
 	if $YSort/Player.complaints >= 10:
-		game_over("Your party was shut down!")
+		game_over("GAME OVER", "Your party was shut down!")
+		
+	if time >= 6:
+		game_over("CONGRATULATIONS", "Your party was a success!")
 	
-func game_over(message):
+func game_over(title, message):
 	is_game_over = true
 	
+	$UI/GameOverLabel.text = title
 	$UI/GameOverSubLabel.text = message
 	$UI/GameOverLabel.show()
 	$UI/GameOverSubLabel.show()
 	
+
+func _on_Clock_timeout():
+	time += 1
