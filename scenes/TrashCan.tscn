@@ -43,5 +43,17 @@ shape = SubResource( 2 )
 stream = ExtResource( 6 )
 max_distance = 20000.0
 attenuation = 0.217638
+
+[node name="RepairTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="RepairBar" type="ProgressBar" parent="."]
+visible = false
+margin_left = -32.7843
+margin_top = -40.7759
+margin_right = 33.2157
+margin_bottom = -26.7759
 [connection signal="timeout" from="CombustTimer" to="." method="_on_CombustTimer_timeout"]
 [connection signal="body_entered" from="FixArea" to="." method="_on_FixArea_body_entered"]
+[connection signal="timeout" from="RepairTimer" to="." method="_on_RepairTimer_timeout"]
