@@ -85,6 +85,9 @@ func shoo(direction):
 	$MoveDurationTimer.wait_time = rand_range(min_move_duration, max_move_duration)
 	$MoveDurationTimer.start()
 
+func hurt():
+	player.complaints += 1
+
 func _on_MoveTimer_timeout():	
 	move_direction = Vector2(1, 0).rotated(rand_range(0, 2 * PI));
 	moving = true

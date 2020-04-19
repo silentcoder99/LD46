@@ -5,7 +5,6 @@ var fade_speed = 0.03
 var text_color = Color(1.0, 1.0, 1.0, 1.0)
 
 func _ready():
-	print("Tip!")
 	#Centre rect
 	rect_position.x -= rect_size.x / 2
 

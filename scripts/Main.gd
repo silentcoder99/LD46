@@ -32,7 +32,8 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		
 	$UI/DebugLabel.text = str($YSort/Player.nearby_partiers) + '\n'
-	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money);
+	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
+	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints)
 	
 	if damage_fade >= 0:
 		$UI/DamageRect.color = transparent.linear_interpolate(opaque, damage_fade)

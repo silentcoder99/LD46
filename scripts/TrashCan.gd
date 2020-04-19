@@ -51,3 +51,7 @@ func _on_FixArea_body_entered(body):
 				tip_animation.set_message("Not enough cash", Color(1.0, 0.0, 0.0))
 				tip_animation.rect_position = position + Vector2(0, -36)
 				get_tree().get_root().add_child(tip_animation)
+	elif "partier" in body.get_groups():
+		if on_fire:
+			body.hurt()
+			body.shoo(position.direction_to(body.position))

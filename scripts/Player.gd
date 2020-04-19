@@ -5,8 +5,10 @@ export var speed = 1000
 var nearby_partiers = 0
 var boundary = 285
 
-var money = 0;
+var money = 0
 var dancing = false
+
+var complaints = 0
 
 func _process(delta):
 	
