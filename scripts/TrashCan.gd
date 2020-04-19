@@ -24,7 +24,7 @@ func _process(delta):
 
 func combust():
 	on_fire = true
-	$Sprite.texture = fire_texture
+	$FireSprite.show()
 	$DisasterSound.play()
 	
 func repair():
@@ -42,7 +42,7 @@ func extinguish():
 	$RepairBar.hide()
 	
 	on_fire = false
-	$Sprite.texture = trash_can_texture
+	$FireSprite.hide()
 	$ResolvedSound.play()
 	
 	$CombustTimer.wait_time = rand_range(min_disaster_delay, max_disaster_delay)
