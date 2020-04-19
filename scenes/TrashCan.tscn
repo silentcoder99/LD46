@@ -1,21 +1,22 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/TrashCan.gd" type="Script" id=1]
 [ext_resource path="res://sprites/tiles/trash can.png" type="Texture" id=2]
 [ext_resource path="res://sprites/tiles/fire!.png" type="Texture" id=3]
 [ext_resource path="res://scenes/TipAnimation.tscn" type="PackedScene" id=4]
-[ext_resource path="res://sprites/tiles/fire1.png" type="Texture" id=5]
-[ext_resource path="res://sprites/tiles/fire2.png" type="Texture" id=6]
-[ext_resource path="res://sprites/tiles/fire3.png" type="Texture" id=7]
-[ext_resource path="res://sprites/tiles/fire4.png" type="Texture" id=8]
-[ext_resource path="res://sounds/alert6.wav" type="AudioStream" id=9]
-[ext_resource path="res://sounds/alert2.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/Arrow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/tiles/fire1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/tiles/fire2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/tiles/fire3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/tiles/fire4.png" type="Texture" id=9]
+[ext_resource path="res://sounds/alert6.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/alert2.wav" type="AudioStream" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fire"
-length = 1.09
+length = 4.0
 loop = true
-step = 0.27
+step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("FireSprite:texture")
 tracks/0/interp = 1
@@ -23,10 +24,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
+"times": PoolRealArray( 0, 1, 2, 3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -67,6 +68,7 @@ script = ExtResource( 1 )
 trash_can_texture = ExtResource( 2 )
 fire_texture = ExtResource( 3 )
 TipAnimation = ExtResource( 4 )
+Arrow = ExtResource( 5 )
 min_disaster_delay = 10
 max_disaster_delay = 40
 
@@ -79,7 +81,7 @@ texture = ExtResource( 2 )
 
 [node name="FireSprite" type="Sprite" parent="."]
 visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -90,7 +92,7 @@ shape = SubResource( 2 )
 one_shot = true
 
 [node name="DisasterSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 max_distance = 4000.0
 attenuation = 0.217638
 
@@ -100,7 +102,7 @@ attenuation = 0.217638
 shape = SubResource( 3 )
 
 [node name="ResolvedSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 max_distance = 4000.0
 attenuation = 0.217638
 

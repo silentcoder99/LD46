@@ -6,6 +6,9 @@ var radius = 60
 var min_fade_distance = 60
 var max_fade_distance = 80
 
+func blip():
+	$AnimationPlayer.play("blip")
+
 func _process(delta):
 	print("hi")
 	position = Vector2()
@@ -20,3 +23,6 @@ func _process(delta):
 		modulate.a = (distance_to_fire - min_fade_distance) / (max_fade_distance - min_fade_distance)
 	else:
 		modulate.a = 1
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	queue_free()

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/1_midtempo_final.wav-addcd0c511bae99c4633db1b76fa4ff7.sample"
+
+[deps]
+
+source_file="res://music/1_midtempo_final.wav"
+dest_files=[ "res://.import/1_midtempo_final.wav-addcd0c511bae99c4633db1b76fa4ff7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

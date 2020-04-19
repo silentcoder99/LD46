@@ -1,9 +1,5 @@
 extends RigidBody2D
 
-export (Array, Array, Texture) var idle_frames
-export (Array, Array, Texture) var dancing_frames
-export (int) var character_index
-
 export var speed = 400
 export var min_move_delay = 0.5
 export var max_move_delay = 1
@@ -33,8 +29,10 @@ func start_dancing(animTime):
 func stop_dancing():
 	near_player = false
 	
-func set_idle_frame(frame):
-	$Sprite.texture = idle_frames[character_index][frame]
+func update_frame_time(frame_time):
+	var animation_speed = 1 / frame_time
+	$AnimationPlayer.set_speed_scale(animation_speed)
+	$AnimationPlayer.seek(0, true)
 	
 func give_tip():
 	player.play_tip_sound()

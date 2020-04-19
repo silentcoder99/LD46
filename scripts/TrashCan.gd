@@ -3,6 +3,7 @@ extends StaticBody2D
 export (Texture) var trash_can_texture
 export (Texture) var fire_texture
 export (PackedScene) var TipAnimation
+export (PackedScene) var Arrow
 
 export var min_disaster_delay = 5
 export var max_disaster_delay = 10
@@ -16,6 +17,11 @@ var repairing = false
 
 var player
 
+func update_frame_time(frame_time):
+	var animation_speed = 1 / frame_time
+	$AnimationPlayer.set_speed_scale(animation_speed)
+	$AnimationPlayer.seek(0, true)
+
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	
@@ -25,11 +31,19 @@ func _ready():
 func _process(delta):
 	$RepairBar.value = $RepairBar.max_value - ($RepairTimer.time_left / $RepairTimer.wait_time) * $RepairBar.max_value
 
+func add_arrow(blip):
+	var arrow = Arrow.instance()
+	arrow.fire = self
+	player.add_child(arrow)
+	
+	if blip:
+		arrow.blip()
+
 func combust():
 	on_fire = true
 	$FireSprite.show()
 	$DisasterSound.play()
-	player.add_arrow(self)
+	add_arrow(false)
 	
 func repair():
 	repairing = true
@@ -50,6 +64,7 @@ func extinguish():
 	repairing = false
 	$FireSprite.hide()
 	$ResolvedSound.play()
+	add_arrow(true)
 	
 	$CombustTimer.wait_time = rand_range(min_disaster_delay, max_disaster_delay)
 	$CombustTimer.start()

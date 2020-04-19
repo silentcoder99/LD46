@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 export var speed = 1000
-export (PackedScene) var Arrow
+
 
 var nearby_partiers = 0
 var boundary = 285
@@ -11,11 +11,6 @@ var dancing = false
 
 var complaints = 0
 var score = 0
-
-func add_arrow(fire):
-	var arrow = Arrow.instance()
-	arrow.fire = fire
-	add_child(arrow)
 
 func play_tip_sound():
 	if not $TipSound.playing:
@@ -36,6 +31,11 @@ func _physics_process(delta):
 		
 	if(!dancing):
 		apply_impulse(Vector2(), velocity.normalized() * speed)
+	
+func update_frame_time(frame_time):
+	var animation_speed = 1 / frame_time
+	$AnimationPlayer.set_speed_scale(animation_speed)
+	$AnimationPlayer.seek(0, true)
 	
 func start_dancing():
 	var time = $AnimationPlayer.get_current_animation_position()
