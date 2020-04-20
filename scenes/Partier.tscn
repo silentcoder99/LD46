@@ -66,8 +66,9 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 2.25, 1 )
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 4.0
+height = 10.0
 
 [sub_resource type="Animation" id=8]
 resource_name = "hurt"
@@ -119,8 +120,8 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )
-scale = Vector2( 4, 4 )
-shape = SubResource( 4 )
+rotation = 1.5708
+shape = SubResource( 9 )
 
 [node name="MoveDurationTimer" type="Timer" parent="."]
 one_shot = true
