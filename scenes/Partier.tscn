@@ -11,8 +11,7 @@
 [ext_resource path="res://sprites/purple boy/idle/purple2.png" type="Texture" id=9]
 [ext_resource path="res://sprites/purple boy/idle/purple3.png" type="Texture" id=10]
 [ext_resource path="res://sprites/purple boy/idle/purple4.png" type="Texture" id=11]
-[ext_resource path="res://sprites/blue boy/dancing/1blue.png" type="Texture" id=12]
-[ext_resource path="res://sounds/coin1.wav" type="AudioStream" id=13]
+[ext_resource path="res://sounds/coin1.wav" type="AudioStream" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -70,6 +69,22 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2.25, 1 )
 
+[sub_resource type="Animation" id=8]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Partier" type="RigidBody2D" groups=[
 "partier",
 "animated",
@@ -100,7 +115,7 @@ anims/dance = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 12 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )
@@ -111,7 +126,10 @@ shape = SubResource( 4 )
 one_shot = true
 
 [node name="TipSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 volume_db = -20.0
+
+[node name="HurtAnimation" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 8 )
 [connection signal="timeout" from="MoveTimer" to="." method="_on_MoveTimer_timeout"]
 [connection signal="timeout" from="MoveDurationTimer" to="." method="_on_MoveDurationTimer_timeout"]

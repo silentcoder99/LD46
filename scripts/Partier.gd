@@ -86,6 +86,7 @@ func shoo(direction):
 
 func hurt():
 	$HurtSound.play()
+	$HurtAnimation.play("hurt")
 	player.complaints += 1
 	player.score -= 5
 
