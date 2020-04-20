@@ -22,7 +22,6 @@ var time = 6
 var time_suffix = "PM"
 
 var frame_time
-var switched = false
 
 func play_song(index, fade):
 	if fade:
@@ -77,7 +76,7 @@ func _ready():
 		$YSort.add_child(partier)
 		partier.position = spawn_position
 		
-	play_song(0, false)
+	play_song(Globals.current_song, false)
 		
 func position_disco():
 	var player_corner = $YSort/Player.position + Vector2(-16, 26) + Vector2(16, -16)
@@ -91,7 +90,7 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
-	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/15"
+	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/20"
 	$UI/TimeLabel.text = "Time " + str(time) + " " + time_suffix
 	
 	#Move disco floor to player
@@ -113,12 +112,8 @@ func _process(delta):
 		if restart_time <= 0:
 			get_tree().change_scene("res://scenes/Menu.tscn")
 		
-	if $YSort/Player.complaints >= 15:
+	if $YSort/Player.complaints >= 20:
 		game_over("GAME OVER", "Your party was shut down!", false)
-		
-	if time == 12 and not switched:
-		switched = true
-		play_song(1, false)
 		
 	if time == 6 and time_suffix == "AM":
 		game_over("CONGRATULATIONS", "Your party was a success!", true)

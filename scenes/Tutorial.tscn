@@ -97,7 +97,8 @@ margin_bottom = 219.0
 custom_fonts/font = SubResource( 5 )
 text = "- Walk up to fires to start putting them out
 - DJ near guests to earn money for repairs
-- Shoo guests away from fires to keep them safe"
+- Shoo guests away from fires to keep them safe
+- Keep your party from being shut down until 6AM"
 [connection signal="focus_entered" from="ControlTitle" to="." method="_on_Start_focus_entered"]
 [connection signal="focus_exited" from="ControlTitle" to="." method="_on_Start_focus_exited"]
 [connection signal="gui_input" from="ControlTitle" to="." method="_on_Start_gui_input"]

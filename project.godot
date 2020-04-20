@@ -19,6 +19,10 @@ config/name="Destroy the System"
 run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://scripts/Globals.gd"
+
 [display]
 
 window/size/width=480
