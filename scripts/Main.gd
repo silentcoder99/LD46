@@ -4,7 +4,8 @@ export (int) var spawn_amount
 export (int) var spawn_area
 export (Array, PackedScene) var Partiers
 export (Array, AudioStream) var songs
-export (Array, int) var tempos
+export (Array, float) var offsets
+export (Array, float) var tempos
 export var time_limit = 100
 
 export var crossfade_time = 3.0
@@ -12,12 +13,12 @@ export var crossfade_time = 3.0
 var fade_amount = 1
 var transparent
 var opaque
-var fade_rate = 0.7
+var fade_rate = 1
 
 var restart_time = 5
 var is_game_over = false
 
-var time = 10
+var time = 6
 var time_suffix = "PM"
 
 var frame_time
@@ -43,21 +44,21 @@ func play_song(index, fade):
 		$MusicPlayer.stream = songs[index]
 		$MusicPlayer.play()
 	
-	set_bpm(tempos[index])
+	set_bpm(tempos[index], offsets[index])
 
 func _on_MusicTween_tween_all_completed():
 	$MusicFader.stop()
 
-func set_bpm(bpm):
+func set_bpm(bpm, offset):
 	var beats_per_second = bpm / 60.0
 	var seconds_per_beat = 1.0 / beats_per_second
 	frame_time = seconds_per_beat / 2.0
 	
-	update_animators()
+	update_animators(offset)
 	
-func update_animators():
+func update_animators(offset):
 	for animator in get_tree().get_nodes_in_group("animated"):
-		animator.update_frame_time(frame_time)
+		animator.update_frame_time(frame_time, offset)
 
 func _ready():
 	OS.set_window_maximized(true)
@@ -65,7 +66,7 @@ func _ready():
 	randomize()
 	
 	transparent = $UI/FadeRect.color
-	opaque = Color(transparent.r, transparent.g, transparent.b, 0.6)
+	opaque = Color(transparent.r, transparent.g, transparent.b, 0.8)
 	
 	for i in range(spawn_amount):
 		var spawn_position = Vector2()
@@ -90,7 +91,7 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
-	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/10"
+	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/15"
 	$UI/TimeLabel.text = "Time " + str(time) + " " + time_suffix
 	
 	#Move disco floor to player
@@ -112,17 +113,17 @@ func _process(delta):
 		if restart_time <= 0:
 			get_tree().change_scene("res://scenes/Menu.tscn")
 		
-	if $YSort/Player.complaints >= 10:
-		game_over("GAME OVER", "Your party was shut down!")
+	if $YSort/Player.complaints >= 15:
+		game_over("GAME OVER", "Your party was shut down!", false)
 		
-	if time == 11 and not switched:
+	if time == 12 and not switched:
 		switched = true
-		play_song(1, true)
+		play_song(1, false)
 		
-	if time == 5 and time_suffix == "AM":
-		game_over("CONGRATULATIONS", "Your party was a success!")
+	if time == 6 and time_suffix == "AM":
+		game_over("CONGRATULATIONS", "Your party was a success!", true)
 	
-func game_over(title, message):
+func game_over(title, message, victory):
 	if not is_game_over:
 		is_game_over = true
 		
@@ -132,6 +133,12 @@ func game_over(title, message):
 		$UI/GameOverLabel.show()
 		$UI/GameOverSubLabel.show()
 		$UI/GameOverScore.show()
+		$UI/VictoryBear.show()
+		
+		if victory:
+			$UI/VictoryBear.set_animation("victory")
+		else:
+			$UI/VictoryBear.set_animation("fail")
 
 func _on_Clock_timeout():
 	time += 1

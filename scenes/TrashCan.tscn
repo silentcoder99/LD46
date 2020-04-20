@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/TrashCan.gd" type="Script" id=1]
-[ext_resource path="res://sprites/tiles/trash can.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tiles/trash.png" type="Texture" id=2]
 [ext_resource path="res://sprites/tiles/fire!.png" type="Texture" id=3]
 [ext_resource path="res://scenes/TipAnimation.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Arrow.tscn" type="PackedScene" id=5]
@@ -45,7 +45,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 6 )
+extents = Vector2( 10.5, 6 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 30.0
@@ -84,8 +84,7 @@ visible = false
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 10 )
+position = Vector2( -0.5, 8 )
 shape = SubResource( 2 )
 
 [node name="CombustTimer" type="Timer" parent="."]
@@ -99,6 +98,7 @@ attenuation = 0.217638
 [node name="FixArea" type="Area2D" parent="."]
 
 [node name="FixColliderShape" type="CollisionShape2D" parent="FixArea"]
+visible = false
 shape = SubResource( 3 )
 
 [node name="ResolvedSound" type="AudioStreamPlayer2D" parent="."]

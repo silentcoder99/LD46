@@ -32,10 +32,10 @@ func _physics_process(delta):
 	if(!dancing):
 		apply_impulse(Vector2(), velocity.normalized() * speed)
 	
-func update_frame_time(frame_time):
+func update_frame_time(frame_time, offset):
 	var animation_speed = 1 / frame_time
 	$AnimationPlayer.set_speed_scale(animation_speed)
-	$AnimationPlayer.seek(0, true)
+	$AnimationPlayer.seek(offset, true)
 	
 func start_dancing():
 	var time = $AnimationPlayer.get_current_animation_position()

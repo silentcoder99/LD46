@@ -8,6 +8,7 @@ func _ready():
 func select(label):
 	$Start.modulate.a = 0.5
 	$Exit.modulate.a = 0.5
+	$Tutorial.modulate.a = 0.5
 	
 	label.modulate.a = 1
 	$BearCursor.position.y = label.rect_position.y + 5
@@ -36,3 +37,10 @@ func _on_Exit_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			get_tree().quit()
+
+func _on_Tutorial_gui_input(event):
+	pass # Replace with function body.
+
+
+func _on_Tutorial_mouse_entered():
+	select($Tutorial)
