@@ -39,8 +39,9 @@ func _on_Exit_gui_input(event):
 			get_tree().quit()
 
 func _on_Tutorial_gui_input(event):
-	pass # Replace with function body.
-
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			get_tree().change_scene("res://scenes/Tutorial.tscn")
 
 func _on_Tutorial_mouse_entered():
 	select($Tutorial)
