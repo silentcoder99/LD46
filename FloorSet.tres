@@ -1,17 +1,21 @@
-[gd_resource type="TileSet" load_steps=7 format=2]
+[gd_resource type="TileSet" load_steps=11 format=2]
 
 [ext_resource path="res://sprites/tiles/wooden floor tiled.png" type="Texture" id=1]
 [ext_resource path="res://sprites/tiles/wooden floor blue.png" type="Texture" id=2]
 [ext_resource path="res://sprites/tiles/wooden floor purple.png" type="Texture" id=3]
-[ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=4]
-[ext_resource path="res://sprites/tiles/test.png" type="Texture" id=5]
+[ext_resource path="res://sprites/tiles/wooden floor tiled dark.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tiles/wooden floor blue dark.png" type="Texture" id=5]
+[ext_resource path="res://sprites/tiles/wooden floor purple dark.png" type="Texture" id=6]
+[ext_resource path="res://sprites/tiles/dark.png" type="Texture" id=7]
+[ext_resource path="res://sprites/tiles/wall.png" type="Texture" id=8]
+[ext_resource path="res://sprites/tiles/test.png" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [resource]
 7/name = "wall.png 7"
-7/texture = ExtResource( 4 )
+7/texture = ExtResource( 8 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 32, 32 )
@@ -27,7 +31,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 7/z_index = 0
 8/name = "test.png 8"
-8/texture = ExtResource( 5 )
+8/texture = ExtResource( 9 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 32, 32 )
@@ -66,3 +70,43 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 12/navigation_offset = Vector2( 0, 0 )
 12/shapes = [  ]
 12/z_index = 0
+13/name = "wooden floor tiled dark.png 13"
+13/texture = ExtResource( 4 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 0, 32, 32 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shapes = [  ]
+13/z_index = 0
+14/name = "wooden floor blue dark.png 14"
+14/texture = ExtResource( 5 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 0, 32, 32 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shapes = [  ]
+14/z_index = 0
+15/name = "wooden floor purple dark.png 15"
+15/texture = ExtResource( 6 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 32, 32 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shapes = [  ]
+15/z_index = 0
+16/name = "dark.png 16"
+16/texture = ExtResource( 7 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 32, 32 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shapes = [  ]
+16/z_index = 0

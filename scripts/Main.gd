@@ -62,6 +62,12 @@ func _ready():
 		
 	play_song(0)
 		
+func position_disco():
+	var player_corner = $YSort/Player.position + Vector2(-16, 26) + Vector2(16, -16)
+	var rounded_corner = (player_corner / 32.0 + Vector2(1, 0)).floor() * 32.0
+	var um = rounded_corner + Vector2(-16, 16)
+	$DiscoFloor.position = um
+
 func _process(delta):
 	time_limit -= delta
 	if time_limit <= 0:
@@ -70,6 +76,13 @@ func _process(delta):
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
 	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/10"
 	$UI/TimeLabel.text = "Time " + str(time) + " " + time_suffix
+	
+	#Move disco floor to player
+	if $YSort/Player.dancing:
+		$DiscoFloor.show()
+		position_disco()
+	else:
+		$DiscoFloor.hide()
 	
 	if not is_game_over:
 		$UI/ScoreLabel.text = "Score " + str($YSort/Player.score)
