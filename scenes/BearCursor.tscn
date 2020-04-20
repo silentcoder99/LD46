@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/dj bear/dancing/dj1.png" type="Texture" id=1]
+[ext_resource path="res://scripts/BearCursor.gd" type="Script" id=2]
+[ext_resource path="res://sprites/dj bear/dancing/dj2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/dj bear/dancing/dj3.png" type="Texture" id=4]
+[ext_resource path="res://sprites/dj bear/dancing/dj4.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "dance"
+length = 4.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 10.1965, 1, 13.4543, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+
+[node name="BearCursor" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/dance = SubResource( 1 )

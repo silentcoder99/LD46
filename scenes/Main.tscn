@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/BlueBoy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/RedGirl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://music/1_midtempo_final.wav" type="AudioStream" id=6]
-[ext_resource path="res://music/test_song.wav" type="AudioStream" id=7]
+[ext_resource path="res://music/test_song2.wav" type="AudioStream" id=7]
 [ext_resource path="res://FloorSet.tres" type="TileSet" id=8]
 [ext_resource path="res://scenes/DiscoFloor.tscn" type="PackedScene" id=9]
 [ext_resource path="res://fonts/Press_Start_2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=10]
@@ -32,7 +32,7 @@ spawn_amount = 10
 spawn_area = 100
 Partiers = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 songs = [ ExtResource( 6 ), ExtResource( 7 ) ]
-tempos = [ 110, 130 ]
+tempos = [ 110, 128 ]
 time_limit = 3000
 
 [node name="Clock" type="Timer" parent="."]
@@ -172,4 +172,9 @@ position = Vector2( 368, -48 )
 position = Vector2( -112, 80 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MusicFader" type="AudioStreamPlayer" parent="."]
+
+[node name="MusicTween" type="Tween" parent="."]
 [connection signal="timeout" from="Clock" to="." method="_on_Clock_timeout"]
+[connection signal="tween_all_completed" from="MusicTween" to="." method="_on_MusicTween_tween_all_completed"]

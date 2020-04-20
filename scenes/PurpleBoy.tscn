@@ -37,11 +37,14 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "give_tip"
+}, {
+"args": [  ],
+"method": "chatter"
 } ]
 }
 
@@ -62,6 +65,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "chatter"
+} ]
+}
 
 [node name="PurpleBoy" index="0" instance=ExtResource( 1 )]
 physics_material_override = SubResource( 1 )
@@ -70,9 +87,9 @@ min_move_delay = 0.5
 max_move_delay = 1
 max_move_duration = 2
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="3"]
 anims/dance = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
-[node name="Sprite" parent="." index="3"]
+[node name="Sprite" parent="." index="4"]
 texture = ExtResource( 6 )

@@ -7,6 +7,8 @@ export (Array, AudioStream) var songs
 export (Array, int) var tempos
 export var time_limit = 100
 
+export var crossfade_time = 3.0
+
 var fade_amount = 1
 var transparent
 var opaque
@@ -21,21 +23,35 @@ var time_suffix = "PM"
 var frame_time
 var switched = false
 
-func play_song(index):
-	$MusicPlayer.stop()
-	$MusicPlayer.stream = songs[index]
-	$MusicPlayer.play()
+func play_song(index, fade):
+	if fade:
+		#Fade out current song
+		var song_position = $MusicPlayer.get_playback_position()
+		$MusicFader.stream = $MusicPlayer.stream
+		$MusicFader.play()
+		$MusicFader.seek(song_position)
+		$MusicTween.interpolate_property($MusicFader, "volume_db", 0, -15, crossfade_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		
+#		#Fade in new song
+		$MusicPlayer.stream = songs[index]
+		$MusicPlayer.play()
+		$MusicPlayer.set_volume_db(-30.0)
+		$MusicTween.interpolate_property($MusicPlayer, "volume_db", -15, 0, crossfade_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		
+		$MusicTween.start()
+	else:
+		$MusicPlayer.stream = songs[index]
+		$MusicPlayer.play()
 	
 	set_bpm(tempos[index])
+
+func _on_MusicTween_tween_all_completed():
+	$MusicFader.stop()
 
 func set_bpm(bpm):
 	var beats_per_second = bpm / 60.0
 	var seconds_per_beat = 1.0 / beats_per_second
 	frame_time = seconds_per_beat / 2.0
-	
-	print("BPS: %s" % str(beats_per_second))
-	print("SPB: %s" % str(seconds_per_beat))
-	print("Frame time: %s" % str(frame_time))
 	
 	update_animators()
 	
@@ -60,7 +76,7 @@ func _ready():
 		$YSort.add_child(partier)
 		partier.position = spawn_position
 		
-	play_song(0)
+	play_song(0, false)
 		
 func position_disco():
 	var player_corner = $YSort/Player.position + Vector2(-16, 26) + Vector2(16, -16)
@@ -94,14 +110,14 @@ func _process(delta):
 	if is_game_over:
 		restart_time -= delta
 		if restart_time <= 0:
-			get_tree().reload_current_scene()
+			get_tree().change_scene("res://scenes/Menu.tscn")
 		
 	if $YSort/Player.complaints >= 10:
 		game_over("GAME OVER", "Your party was shut down!")
 		
-	if time == 2 and not switched:
+	if time == 11 and not switched:
 		switched = true
-		play_song(1)
+		play_song(1, true)
 		
 	if time == 5 and time_suffix == "AM":
 		game_over("CONGRATULATIONS", "Your party was a success!")

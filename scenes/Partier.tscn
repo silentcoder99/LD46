@@ -1,17 +1,18 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/Partier.gd" type="Script" id=1]
 [ext_resource path="res://scenes/TipAnimation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sounds/hurt4.wav" type="AudioStream" id=3]
-[ext_resource path="res://sprites/purple boy/dancing/1purple.png" type="Texture" id=4]
-[ext_resource path="res://sprites/purple boy/dancing/2purple.png" type="Texture" id=5]
-[ext_resource path="res://sprites/purple boy/dancing/3purple.png" type="Texture" id=6]
-[ext_resource path="res://sprites/purple boy/dancing/4purple.png" type="Texture" id=7]
-[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=8]
-[ext_resource path="res://sprites/purple boy/idle/purple2.png" type="Texture" id=9]
-[ext_resource path="res://sprites/purple boy/idle/purple3.png" type="Texture" id=10]
-[ext_resource path="res://sprites/purple boy/idle/purple4.png" type="Texture" id=11]
-[ext_resource path="res://sounds/coin1.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/partygoer_interested.wav" type="AudioStream" id=4]
+[ext_resource path="res://sprites/purple boy/dancing/1purple.png" type="Texture" id=5]
+[ext_resource path="res://sprites/purple boy/dancing/2purple.png" type="Texture" id=6]
+[ext_resource path="res://sprites/purple boy/dancing/3purple.png" type="Texture" id=7]
+[ext_resource path="res://sprites/purple boy/dancing/4purple.png" type="Texture" id=8]
+[ext_resource path="res://sprites/purple boy/idle/purple1.png" type="Texture" id=9]
+[ext_resource path="res://sprites/purple boy/idle/purple2.png" type="Texture" id=10]
+[ext_resource path="res://sprites/purple boy/idle/purple3.png" type="Texture" id=11]
+[ext_resource path="res://sprites/purple boy/idle/purple4.png" type="Texture" id=12]
+[ext_resource path="res://sounds/coin1.wav" type="AudioStream" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -31,7 +32,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
 "transitions": PoolRealArray( 2.2974, 34.2967, 3.86375, 2.73208 ),
 "update": 0,
-"values": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+"values": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -40,9 +41,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.81 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.27, 0.81 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "chatter"
+}, {
 "args": [  ],
 "method": "give_tip"
 } ]
@@ -63,7 +67,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.27, 0.54, 0.81 ),
 "transitions": PoolRealArray( 1, 1, 1, 35.5062 ),
 "update": 0,
-"values": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
 }
 
 [sub_resource type="CapsuleShape2D" id=9]
@@ -106,6 +110,11 @@ TipAnimation = ExtResource( 2 )
 stream = ExtResource( 3 )
 max_distance = 4000.0
 
+[node name="ChatterSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+max_distance = 1000.0
+attenuation = 2.0
+
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
@@ -116,7 +125,7 @@ anims/dance = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )
@@ -127,7 +136,7 @@ shape = SubResource( 9 )
 one_shot = true
 
 [node name="TipSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = -20.0
 
 [node name="HurtAnimation" type="AnimationPlayer" parent="."]

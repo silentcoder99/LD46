@@ -5,6 +5,7 @@ export var min_move_delay = 0.5
 export var max_move_delay = 1
 export var min_move_duration = 0.5
 export var max_move_duration = 2
+export var chatter_chance = 0.005
 export var tip_amount = 1
 export (PackedScene) var TipAnimation
 
@@ -44,6 +45,10 @@ func give_tip():
 	get_tree().get_root().add_child(tip_animation)
 	#add_child(tip_animation)
 	
+func chatter():
+	if randf() <= chatter_chance:
+		$ChatterSound.play()	
+
 func _process(delta):
 	if near_player && player.dancing:
 		dancing = true
@@ -99,5 +104,9 @@ func _on_MoveTimer_timeout():
 func _on_MoveDurationTimer_timeout():
 	moving = false
 	
-	$MoveTimer.wait_time = rand_range(min_move_delay, max_move_delay)
+	var move_delay = rand_range(min_move_delay, max_move_delay)
+	if dancing:
+		move_delay *= 2
+		
+	$MoveTimer.wait_time = move_delay
 	$MoveTimer.start()
