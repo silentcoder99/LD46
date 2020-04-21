@@ -30,19 +30,19 @@ func _on_Exit_focus_entered():
 func _on_Start_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			Globals.current_song = 1
+			Globals.current_song = 0
 			get_tree().change_scene("res://scenes/Main.tscn")
 
 
 func _on_Exit_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			Globals.current_song = 0
 			get_tree().change_scene("res://scenes/Menu.tscn")
 
 func _on_Tutorial_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
+			Globals.current_song = 1
 			get_tree().change_scene("res://scenes/Main.tscn")
 
 func _on_Tutorial_mouse_entered():

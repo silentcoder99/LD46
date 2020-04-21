@@ -90,7 +90,7 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		
 	$UI/MoneyLabel.text = "Cash $" + str($YSort/Player.money)
-	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/20"
+	$UI/ComplaintsLabel.text = "Complaints " + str($YSort/Player.complaints) + "/12"
 	$UI/TimeLabel.text = "Time " + str(time) + " " + time_suffix
 	
 	#Move disco floor to player
@@ -112,7 +112,7 @@ func _process(delta):
 		if restart_time <= 0:
 			get_tree().change_scene("res://scenes/Menu.tscn")
 		
-	if $YSort/Player.complaints >= 20:
+	if $YSort/Player.complaints >= 12:
 		game_over("GAME OVER", "Your party was shut down!", false)
 		
 	if time == 6 and time_suffix == "AM":

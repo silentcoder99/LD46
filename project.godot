@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Destroy the System"
+config/name="Drop Bear"
 run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 
